@@ -1,10 +1,12 @@
 {
   "name": "Hortas Urbanas de Curitiba",
   "short_name": "Hortas Curitiba",
-  "start_url": ".",
+  "description": "Mapa interativo das hortas comunitárias e fazendas urbanas de Curitiba",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#CDEED6",
   "theme_color": "#6DBE8B",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "icon-192.png",
