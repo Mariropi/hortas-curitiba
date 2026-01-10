@@ -47,6 +47,12 @@ header {
   height: 400px;
   margin: 20px;
   border-radius: 12px;
+
+  /* Correções para mobile */
+  touch-action: pan-x pan-y;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 #cards {
@@ -99,4 +105,14 @@ header {
   float: right;
   font-size: 28px;
   cursor: pointer;
+}
+/* Ajustes específicos para mobile */
+@media (max-width: 768px) {
+  #map {
+    height: 300px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
 }
