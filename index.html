@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <title>Hortas Urbanas de Curitiba</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#6DBE8B">
-  
+  <meta name="theme-color" content="#6DBE8B">
+
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
 </head>
@@ -14,19 +15,8 @@
 
 <header>
   <h1>🌱 Hortas Urbanas de Curitiba</h1>
-  <p>Mapa interativo das hortas e fazendas urbanas</p>
+  <p>Mapa interativo de hortas e fazendas urbanas</p>
 </header>
-
-<section class="curiosidades">
-  <h2>Dados que colocam Curitiba em destaque</h2>
-  <ul>
-    <li>216 hortas urbanas ativas</li>
-    <li>1,6 mil toneladas de produção anual</li>
-    <li>32 mil pessoas beneficiadas</li>
-    <li>130 colmeias de abelhas sem ferrão</li>
-    <li>3 Fazendas Urbanas Municipais</li>
-  </ul>
-</section>
 
 <section class="busca">
   <input type="text" id="endereco" placeholder="Digite seu endereço">
@@ -39,50 +29,25 @@
 
 <footer>
   <p>
-    Para criar uma horta comunitária:
+    Saiba como criar uma horta comunitária:
     <a href="https://www.curitiba.pr.gov.br/servicos/hortas-comunitarias-urbanas-curitiba/107" target="_blank">
       clique aqui
     </a>
   </p>
 </footer>
 
-<!-- MODAL FAZENDAS URBANAS -->
+<!-- Modal Fazendas -->
 <div id="modalFazenda" class="modal">
   <div class="modal-content">
     <span class="close" onclick="fecharModal()">&times;</span>
-
-    <h2>Visitas e participação nas Fazendas Urbanas</h2>
-
-    <p><strong>Quem pode participar?</strong><br>
-      Qualquer cidadão (menores acompanhados dos responsáveis) e PcD.
-    </p>
-
-    <p><strong>Visitas livres:</strong><br>
-      Segunda à sexta-feira, das 8h às 12h e das 13h às 17h.
-    </p>
-
-    <p><strong>Visitas guiadas:</strong><br>
-      Inscrições pelo Guia Curitiba (buscar por “Fazenda Urbana”).
-    </p>
-
-    <p><strong>Cursos:</strong><br>
-      Presenciais mensais e cursos EAD pela plataforma Aprendere (SMSAN).
-    </p>
-
-    <p><strong>Taxas:</strong> Gratuitas.</p>
-
-    <p><strong>Contato:</strong><br>
-      ☎️ (41) 3267-9128<br>
-      📞 (41) 99957-5913<br>
-      💬 WhatsApp (41) 9951-0900<br>
-      ✉️ fazendaurbana@curitiba.pr.gov.br<br>
-      ✉️ agriculturaurbana@curitiba.pr.gov.br
-    </p>
+    <h2>Visitas às Fazendas Urbanas</h2>
+    <p>Visitas gratuitas de segunda a sexta, das 8h às 17h.</p>
+    <p>Contato: WhatsApp (41) 9951-0900</p>
   </div>
 </div>
+
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
-
 
