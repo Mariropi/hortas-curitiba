@@ -1,4 +1,10 @@
-var map = L.map('map').setView([-25.4284, -49.2733], 12);
+var map = L.map('map', {
+  dragging: true,
+  tap: true,
+  touchZoom: true,
+  scrollWheelZoom: false,
+  doubleClickZoom: true
+}).setView([-25.4284, -49.2733], 12);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
 .addTo(map);
