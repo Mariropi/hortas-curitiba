@@ -1,17 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap');
 * {
   box-sizing: border-box;
 }
-
-body {
+ body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'ADLaM Display', cursive;
   background-color: #F5FFF7;
+  color: #2F4F2F;
 }
 
 header {
-  background-color: #CDEED6;
+  background: linear-gradient(135deg, #CDEED6, #DFF1FF);
   text-align: center;
-  padding: 20px;
+  padding: 30px 20px;
+}
+
+h1, h2, h3 {
+  color: #2F7D32;
+  letter-spacing: 1px;
 }
 
 header h1 {
@@ -41,15 +47,22 @@ header h1 {
   border-radius: 8px;
   border: 1px solid #ccc;
 }
-
-.busca button {
-  padding: 10px 15px;
-  margin-left: 5px;
-  border-radius: 8px;
+.busca button,
+.card button {
+  padding: 12px;
+  border-radius: 10px;
   border: none;
-  background-color: #2F7D32;
-  color: white;
+  background-color: #6DBE8B;
+  color: #FFFFFF;
   cursor: pointer;
+  font-family: 'ADLaM Display', cursive;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.busca button:hover,
+.card button:hover {
+  background-color: #4FA36A;
+  transform: scale(1.03);
 }
 
 .busca button:hover {
@@ -70,9 +83,11 @@ header h1 {
 }
 
 .card {
-  background-color: #DFF1FF;
-  padding: 15px;
-  border-radius: 12px;
+  background-color: #FFFFFF;
+  padding: 18px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-left: 6px solid #CDEED6;
 }
 
 .card h3 {
