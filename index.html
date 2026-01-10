@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Hortas Urbanas de Curitiba</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+
+<header>
+  <h1>🌱 Hortas Urbanas de Curitiba</h1>
+  <p>Mapa interativo das hortas comunitárias</p>
+</header>
+
+<section class="curiosidades">
+  <h2>Dados que colocam Curitiba em destaque</h2>
+  <ul>
+    <li>216 hortas urbanas ativas</li>
+    <li>1,6 mil toneladas de produção anual</li>
+    <li>32 mil pessoas beneficiadas</li>
+    <li>130 colmeias de abelhas sem ferrão</li>
+    <li>3 Fazendas Urbanas Municipais</li>
+  </ul>
+</section>
+
+<section class="busca">
+  <input type="text" id="endereco" placeholder="Digite seu endereço">
+  <button onclick="buscarEndereco()">Buscar horta próxima</button>
+</section>
+
+<div id="map"></div>
+
+<section id="cards"></section>
+
+<footer>
+  <a href="https://www.curitiba.pr.gov.br/servicos/hortas-comunitarias-urbanas-curitiba/107" target="_blank">
+    Quero montar uma horta 🌿
+  </a>
+</footer>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
+
