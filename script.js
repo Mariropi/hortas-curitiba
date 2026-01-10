@@ -1,77 +1,105 @@
-// Inicializa o mapa em Curitiba
 var map = L.map('map').setView([-25.4284, -49.2733], 12);
 
-// Camada do mapa
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap'
-}).addTo(map);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+.addTo(map);
 
-// Lista de hortas cadastradas
-const hortas = [
+const locais = [
+  {
+    nome: "Fazenda Urbana Cajuru",
+    lat: -25.4422,
+    lng: -49.2316,
+    endereco: "Av. Prefeito Maurício Fruet, 1880 – Cajuru",
+    tipo: "fazenda",
+    descricao: "Espaço pioneiro no Brasil, dedicado à educação para a agricultura urbana."
+  },
+  {
+    nome: "Fazenda Urbana CIC",
+    lat: -25.5645,
+    lng: -49.3349,
+    endereco: "Rua Maria Lúcia Locher Athayde, 7974 – São Miguel",
+    tipo: "fazenda",
+    descricao: "Focada em capacitação e tecnologias do ecossistema alimentar."
+  },
+  {
+    nome: "Fazenda Urbana Tatuquara",
+    lat: -25.5877,
+    lng: -49.3482,
+    endereco: "Rua Olivardo Konoroski Bueno, 177 – Tatuquara",
+    tipo: "fazenda",
+    descricao: "Praça viva de convivência, cultivo e geração de renda."
+  },
   {
     nome: "Horta Comunitária Dembinski II",
     lat: -25.5206,
     lng: -49.3073,
     endereco: "Rua Rio do Sul, em frente ao nº 2290 – CIC",
-    telefone: "Não informado",
-    curiosidade: "Projeto comunitário voltado à segurança alimentar."
+    tipo: "horta",
+    descricao: "Produção comunitária e segurança alimentar."
   },
   {
     nome: "Horta Comunitária do Jacu",
     lat: -25.4189,
     lng: -49.2731,
     endereco: "Rua Ângelo Zeni, em frente ao nº 56 – Bom Retiro",
-    telefone: "Não informado",
-    curiosidade: "Espaço de integração social e educação ambiental."
-  },
-  {
-    nome: "Fazenda Urbana do Cajuru",
-    lat: -25.4422,
-    lng: -49.2316,
-    endereco: "Av. Prefeito Maurício Fruet, 1880 – Cajuru",
-    telefone: "(41) 3361-2524",
-    curiosidade: "Produção sustentável e capacitação da comunidade."
+    tipo: "horta",
+    descricao: "Educação ambiental e integração social."
   }
 ];
 
-// Cria marcadores e cards
-hortas.forEach(horta => {
-  // Marcador no mapa
-  L.marker([horta.lat, horta.lng])
-    .addTo(map)
-    .bindPopup(`<b>${horta.nome}</b><br>${horta.endereco}`);
+locais.forEach(l => {
+  L.marker([l.lat, l.lng]).addTo(map)
+    .bindPopup(`<b>${l.nome}</b><br>${l.endereco}`);
 
-  // Card da horta
   document.getElementById("cards").innerHTML += `
     <div class="card">
-      <h3>${horta.nome}</h3>
-      <p><strong>Endereço:</strong> ${horta.endereco}</p>
-      <p><strong>Telefone:</strong> ${horta.telefone}</p>
-      <p><em>${horta.curiosidade}</em></p>
-      <button onclick="map.setView([${horta.lat}, ${horta.lng}], 16)">
-        Ver no mapa
-      </button>
+      <h3>${l.nome}</h3>
+      <p><strong>Endereço:</strong> ${l.endereco}</p>
+      <p>${l.descricao}</p>
+      ${l.tipo === "fazenda" ? `<button onclick="abrirModal()">Conhecer a Fazenda Urbana</button>` : ""}
+      <button onclick="map.setView([${l.lat}, ${l.lng}], 16)">Ver no mapa</button>
     </div>
   `;
 });
 
-// Busca endereço do usuário
+function distancia(lat1, lon1, lat2, lon2) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat/2)**2 +
+            Math.cos(lat1*Math.PI/180) *
+            Math.cos(lat2*Math.PI/180) *
+            Math.sin(dLon/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
 function buscarEndereco() {
-  let endereco = document.getElementById("endereco").value;
+  let e = document.getElementById("endereco").value;
+  fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${e}`)
+    .then(r => r.json())
+    .then(d => {
+      if (!d.length) return alert("Endereço não encontrado.");
+      let uLat = d[0].lat, uLng = d[0].lon;
+      let proximo = null, menor = Infinity;
 
-  if (!endereco) {
-    alert("Digite um endereço para buscar.");
-    return;
-  }
+      locais.forEach(l => {
+        let dist = distancia(uLat, uLng, l.lat, l.lng);
+        if (dist < menor) { menor = dist; proximo = l; }
+      });
 
-  fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${endereco}`)
-    .then(response => response.json())
-    .then(data => {
-      if (data.length > 0) {
-        map.setView([data[0].lat, data[0].lon], 15);
+      if (menor > 20) {
+        alert("Procure o coordenador da horta mais perto de você (via associações de moradores), entre em contato com a Prefeitura pela Central 156 ou e-mail agriculturaurbana@curitiba.pr.gov.br.");
+        map.setView([uLat, uLng], 13);
       } else {
-        alert("Endereço não encontrado.");
+        map.setView([proximo.lat, proximo.lng], 16);
+        alert(`Local mais próximo:\n${proximo.nome}`);
       }
-    })
-    .catch(() => alert("Erro ao buscar o endereço."));
+    });
+}
+
+function abrirModal() {
+  document.getElementById("modalFazenda").style.display = "block";
+}
+
+function fecharModal() {
+  document.getElementById("modalFazenda").style.display = "none";
 }
