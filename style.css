@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap');
-* {
-  box-sizing: border-box;
-}
- body {
+
+body {
   margin: 0;
   font-family: 'ADLaM Display', cursive;
   background-color: #F5FFF7;
@@ -15,24 +13,11 @@ header {
   padding: 30px 20px;
 }
 
-h1, h2, h3 {
-  color: #2F7D32;
-  letter-spacing: 1px;
-}
-
-header h1 {
-  margin: 0;
-}
-
 .curiosidades {
   background-color: #FFF3C4;
   margin: 20px;
   padding: 15px;
   border-radius: 12px;
-}
-
-.curiosidades ul {
-  padding-left: 20px;
 }
 
 .busca {
@@ -42,31 +27,20 @@ header h1 {
 
 .busca input {
   padding: 10px;
-  width: 70%;
-  max-width: 300px;
+  width: 80%;
+  max-width: 320px;
   border-radius: 8px;
   border: 1px solid #ccc;
 }
-.busca button,
-.card button {
+
+.busca button {
   padding: 12px;
+  margin-top: 10px;
   border-radius: 10px;
   border: none;
   background-color: #6DBE8B;
-  color: #FFFFFF;
+  color: white;
   cursor: pointer;
-  font-family: 'ADLaM Display', cursive;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.busca button:hover,
-.card button:hover {
-  background-color: #4FA36A;
-  transform: scale(1.03);
-}
-
-.busca button:hover {
-  background-color: #256628;
 }
 
 #map {
@@ -77,26 +51,22 @@ header h1 {
 
 #cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 15px;
   padding: 20px;
 }
 
 .card {
-  background-color: #FFFFFF;
+  background: white;
   padding: 18px;
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
   border-left: 6px solid #CDEED6;
-}
-
-.card h3 {
-  margin-top: 0;
 }
 
 .card button {
   margin-top: 10px;
-  padding: 8px;
+  padding: 10px;
   width: 100%;
   border: none;
   border-radius: 8px;
@@ -105,31 +75,28 @@ header h1 {
   cursor: pointer;
 }
 
-footer {
-  background-color: #CDEED6;
-  text-align: center;
-  padding: 15px;
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
 }
 
-footer a {
-  text-decoration: none;
-  color: #2F7D32;
-  font-weight: bold;
+.modal-content {
+  background: white;
+  margin: 5% auto;
+  padding: 25px;
+  border-radius: 16px;
+  max-width: 700px;
 }
 
-/* Responsivo */
-@media (max-width: 600px) {
-  #map {
-    height: 300px;
-  }
-
-  .busca input {
-    width: 90%;
-    margin-bottom: 10px;
-  }
-
-  .busca button {
-    width: 90%;
-    margin-left: 0;
-  }
+.close {
+  float: right;
+  font-size: 28px;
+  cursor: pointer;
 }
