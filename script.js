@@ -98,17 +98,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const cards = document.getElementById("cards");
   cards.innerHTML = "";
+  const imagemHTML = local.imagem
+  ? `<img src="${local.imagem}" alt="${local.nome}">`
+  : `<div class="img-placeholder">🌱</div>`;
 
   locais.forEach((local, index) => {
     const div = document.createElement("div");
     div.className = local.tipo === "fazenda" ? "card fazenda" : "card";
 
   div.innerHTML = `
-  ${local.imagem 
-    ? `<img src="${local.imagem}" alt="${local.nome}">`
-    : `<div class="img-placeholder">🌱</div>`
-  }
-
+  ${imagemHTML}
   <h3>${local.nome}</h3>
   <p>${local.endereco}</p>
 
@@ -117,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
     : ""
   }
 
-  <button onclick="verNoMapa(${local.lat}, ${local.lng})">
+  <button onclick="verNoMapaMobile(${local.lat}, ${local.lng})">
     Ver no mapa
   </button>
 `;
@@ -146,7 +145,6 @@ window.verNoMapa = function (lat, lng) {
       L.marker([lat, lng]).addTo(mapModalInstance);
     }, 200);
   } 
-  // Desktop continua normal
   else {
     map.setView([lat, lng], 16);
     window.scrollTo({ top: document.getElementById("map").offsetTop - 20, behavior: "smooth" });
@@ -160,7 +158,6 @@ window.fecharMapaModal = function () {
     mapModalInstance = null;
   }
 };
-
 
   window.buscarEndereco = function () {
     const endereco = document.getElementById("endereco").value.trim();
