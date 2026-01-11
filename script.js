@@ -7,14 +7,18 @@ document.addEventListener("DOMContentLoaded", function () {
   }).addTo(map);
 
 const locais = [
-  {
-    nome: "Fazenda Urbana Cajuru",
-    tipo: "fazenda",
-    lat: -25.4422,
-    lng: -49.2316,
-    endereco: "Av. Prefeito Maurício Fruet, 1880 – Cajuru",
-    imagem: "https://www.bemparana.com.br/wp-content/uploads/2023/07/fazenda-urbana-cajuru.jpg"
-  },
+{
+  nome: "Fazenda Urbana Cajuru",
+  tipo: "fazenda",
+  lat: -25.4422,
+  lng: -49.2316,
+  endereco: "Av. Prefeito Maurício Fruet, 1880 – Cajuru",
+  imagem: "https://www.bemparana.com.br/wp-content/uploads/2023/07/fazenda-urbana-cajuru.jpg",
+  visita: "Segunda a sexta, 8h–12h e 13h–17h",
+  cursos: "Cursos presenciais e EAD pelo Aprendere (SMSAN)",
+  contato: "(41) 3267-9128 • WhatsApp (41) 9951-0900"
+},
+
   {
     nome: "Fazenda Urbana CIC",
     tipo: "fazenda",
@@ -22,13 +26,20 @@ const locais = [
     lng: -49.3539665,
     endereco: "Rua Maria Lúcia Locher Athayde, 7974 – São Miguel",
     imagem: "https://lh3.googleusercontent.com/p/AG0ilSzjPTTYCXlgtikRsJEsRckENO9M6ZEjW0xFJ5-PPfr4gQHPXlEBKBeYaPgU0QTbylRNqh1jqdXvpllXvv3iYnSD-A8wMeWRtw0TXLNHyogV04NjEBf-8W6gxLKFexEpCBwEopY86g=w600"
+    visita: "Segunda a sexta, 8h–12h e 13h–17h",
+    cursos: "Cursos presenciais e EAD pelo Aprendere (SMSAN)",
+    contato: "(41) 3267-9128 • WhatsApp (41) 9951-0900"
   },
+  
   {
     nome: "Fazenda Urbana Tatuquara",
     tipo: "fazenda",
     lat: -25.5877,
     lng: -49.3482,
     endereco: "Rua Olivardo Konoroski Bueno, 177 – Tatuquara"
+    visita: "Segunda a sexta, 8h–12h e 13h–17h",
+    cursos: "Cursos presenciais e EAD pelo Aprendere (SMSAN)",
+    contato: "(41) 3267-9128 • WhatsApp (41) 9951-0900"
   },
   {
     nome: "Horta Projeto Oásis",
