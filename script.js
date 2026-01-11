@@ -89,27 +89,17 @@ const locais = [
     const div = document.createElement("div");
     div.className = local.tipo === "fazenda" ? "card fazenda" : "card";
 div.innerHTML = `
-  ${
-    local.imagem
-      ? `<img src="${local.imagem}" alt="${local.nome}">`
-      : `<div class="img-placeholder">🌱</div>`
-  }
-
   <h3>${local.nome}</h3>
   <p>${local.endereco}</p>
-
-  ${
-    local.tipo === "fazenda"
-<button onclick="abrirModal(${index})">
-  Conhecer a Fazenda
-</button>
-  }
-
+  ${local.tipo === "fazenda" ? 
+    `<button class="btn-fazenda" onclick="abrirModal(${index})">
+      Conhecer a Fazenda
+    </button>` 
+    : ""}
   <button onclick="verNoMapa(${local.lat}, ${local.lng})">
     Ver no mapa
   </button>
 `;
-
     cards.appendChild(div);
   });
 
