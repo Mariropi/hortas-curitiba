@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
       lng: -49.2316,
       endereco: "Av. Prefeito Maurício Fruet, 1880 – Cajuru",
       imagem: "https://www.bemparana.com.br/wp-content/uploads/2023/07/fazenda-urbana-cajuru.jpg",
-      descricao: "Dedicada à educação para a agricultura urbana, sendo um espaço pioneiro no Brasil. Atua como centro de referência, com hortas, estufas, composteiras, escola de gastronomia social, visitas e cursos."
+      descricao:
+        "Dedicada à educação para a agricultura urbana, sendo um espaço pioneiro no Brasil. Atua como centro de referência com visitas e cursos. Possui hortas modelo, estufas, composteiras, sala multiuso e escola de gastronomia social."
     },
     {
       nome: "Fazenda Urbana CIC",
@@ -22,8 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
       lat: -25.4900288,
       lng: -49.3539665,
       endereco: "Rua Maria Lúcia Locher Athayde, 7974 – São Miguel",
-      imagem: "https://lh3.googleusercontent.com/p/AG0ilSzjPTTYCXlgtikRsJEsRckENO9M6ZEjW0xFJ5-PPfr4gQHPXlEBKBeYaPgU0QTbylRNqh1jqdXvpllXvv3iYnSD-A8wMeWRtw0TXLNHyogV04NjEBf-8W6gxLKFexEpCBwEopY86g=w600",
-      descricao: "Operando desde outubro de 2025, possui proposta semelhante à Fazenda Cajuru, com maior integração ao ecossistema alimentar da Região Metropolitana de Curitiba."
+      imagem:
+        "https://lh3.googleusercontent.com/p/AG0ilSzjPTTYCXlgtikRsJEsRckENO9M6ZEjW0xFJ5-PPfr4gQHPXlEBKBeYaPgU0QTbylRNqh1jqdXvpllXvv3iYnSD-A8wMeWRtw0TXLNHyogV04NjEBf-8W6gxLKFexEpCBwEopY86g=w800",
+      descricao:
+        "Operando desde outubro de 2025, possui proposta semelhante à Fazenda Cajuru, com maior integração ao ecossistema alimentar da Região Metropolitana de Curitiba."
     },
     {
       nome: "Fazenda Urbana Tatuquara",
@@ -31,9 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
       lat: -25.5877,
       lng: -49.3482,
       endereco: "Rua Olivardo Konoroski Bueno, 177 – Tatuquara",
-      imagem: "https://www.curitiba.pr.gov.br/sites/default/files/styles/galeria/public/2023-10/fazenda-urbana-tatuquara.jpg",
-      descricao: "Uma praça viva de convivência e bem-estar, valorizando a produção de alimentos, o empreendedorismo e a geração de renda local."
+      imagem: "",
+      descricao:
+        "Uma praça viva de convivência e bem-estar, onde paisagismo e cultivo se unem, valorizando a produção de alimentos, o empreendedorismo e a geração de renda local."
     },
+
     {
       nome: "Horta Projeto Oásis",
       tipo: "horta",
@@ -92,13 +97,14 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   const cards = document.getElementById("cards");
+  cards.innerHTML = "";
 
   locais.forEach((local, index) => {
     const div = document.createElement("div");
     div.className = local.tipo === "fazenda" ? "card fazenda" : "card";
 
     div.innerHTML = `
-      ${local.imagem ? `<img src="${local.imagem}" alt="${local.nome}">` : ""}
+      ${local.imagem ? `<img src="${local.imagem}" alt="${local.nome}">` : `<div class="img-placeholder">🌱</div>`}
       <h3>${local.nome}</h3>
       <p>${local.endereco}</p>
 
@@ -107,9 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
         : ""
       }
 
-      <button onclick="verNoMapa(${local.lat}, ${local.lng})">
-        Ver no mapa
-      </button>
+      <button onclick="verNoMapa(${local.lat}, ${local.lng})">Ver no mapa</button>
     `;
 
     cards.appendChild(div);
@@ -119,74 +123,81 @@ document.addEventListener("DOMContentLoaded", function () {
     map.setView([lat, lng], 16);
   };
 
-  function calcularDistanciaKm(lat1, lon1, lat2, lon2) {
+  function distanciaKm(lat1, lon1, lat2, lon2) {
     const R = 6371;
     const dLat = (lat2 - lat1) * Math.PI / 180;
     const dLon = (lon2 - lon1) * Math.PI / 180;
-
     const a =
       Math.sin(dLat / 2) ** 2 +
       Math.cos(lat1 * Math.PI / 180) *
       Math.cos(lat2 * Math.PI / 180) *
       Math.sin(dLon / 2) ** 2;
-
     return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
   }
 
   window.buscarEndereco = function () {
-    const endereco = document.getElementById("endereco").value;
+    const endereco = document.getElementById("endereco").value.trim();
     if (!endereco) return;
 
     fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${endereco}, Curitiba, PR`)
       .then(r => r.json())
       .then(data => {
         if (!data.length) {
-          mostrarNaoEncontrado();
+          mostrarNaoEncontrou();
           return;
         }
 
-        const origemLat = parseFloat(data[0].lat);
-        const origemLng = parseFloat(data[0].lon);
+        const lat = parseFloat(data[0].lat);
+        const lng = parseFloat(data[0].lon);
 
-        let encontrado = null;
+        let maisProxima = null;
         let menor = Infinity;
 
         locais.forEach(local => {
-          const d = calcularDistanciaKm(origemLat, origemLng, local.lat, local.lng);
+          const d = distanciaKm(lat, lng, local.lat, local.lng);
           if (d <= 10 && d < menor) {
             menor = d;
-            encontrado = local;
+            maisProxima = local;
           }
         });
 
-        if (!encontrado) {
-          mostrarNaoEncontrado();
+        if (!maisProxima) {
+          mostrarNaoEncontrou();
           return;
         }
 
-        window.open(
-          `https://www.google.com/maps/dir/?api=1&origin=${origemLat},${origemLng}&destination=${encontrado.lat},${encontrado.lng}`,
-          "_blank"
-        );
+        map.setView([maisProxima.lat, maisProxima.lng], 15);
       })
-      .catch(mostrarNaoEncontrado);
+      .catch(mostrarNaoEncontrou);
   };
 
-  function mostrarNaoEncontrado() {
-    alert(
-      "Não encontrou uma horta?\n\n" +
-      "Para obter a localização exata das hortas mais próximas ao seu endereço ou bairro específico,\n" +
-      "o canal mais eficiente é a Central 156 (telefone ou chat online).\n\n" +
-      "Eles possuem dados atualizados e podem direcioná-lo corretamente."
-    );
+  function mostrarNaoEncontrou() {
+    const aviso = document.createElement("div");
+    aviso.className = "card aviso";
+    aviso.innerHTML = `
+      <h3>❓ Não encontrou uma horta?</h3>
+      <p>
+        Para obter a localização exata das hortas mais próximas ao seu endereço
+        ou bairro específico, o canal mais eficiente é a <strong>Central 156</strong>.
+      </p>
+    `;
+    cards.prepend(aviso);
   }
 
   window.abrirModal = function (index) {
-    const local = locais[index];
-    document.getElementById("modalTitulo").innerText = local.nome;
-    document.getElementById("modalImagem").src = local.imagem || "";
-    document.getElementById("modalEndereco").innerText = local.endereco;
-    document.getElementById("modalDescricao").innerText = local.descricao || "";
+    const f = locais[index];
+    document.getElementById("modalTitulo").innerText = f.nome;
+    document.getElementById("modalEndereco").innerText = f.endereco;
+    document.getElementById("modalDescricao").innerText = f.descricao || "";
+    const img = document.getElementById("modalImagem");
+
+    if (f.imagem) {
+      img.src = f.imagem;
+      img.style.display = "block";
+    } else {
+      img.style.display = "none";
+    }
+
     document.getElementById("modalFazenda").style.display = "block";
   };
 
