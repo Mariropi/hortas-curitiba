@@ -187,22 +187,18 @@ window.buscarEndereco = function () {
     });
 };
 
-  window.abrirModal = function () {
-    document.getElementById("modalFazenda").style.display = "block";
-  };
-  window.abrirModal = function (index) {
-  const local = locais[index];
+window.abrirModal = function (index) {
+  const fazenda = locais[index];
 
-  document.getElementById("modalTitulo").innerText = local.nome;
-  document.getElementById("modalEndereco").innerText = local.endereco;
+  document.getElementById("modalTitulo").innerText = fazenda.nome;
+  document.getElementById("modalEndereco").innerText = fazenda.endereco;
+  document.getElementById("modalVisita").innerText = fazenda.visita;
+  document.getElementById("modalCursos").innerText = fazenda.cursos;
+  document.getElementById("modalContato").innerText = fazenda.contato;
 
-  const img = document.getElementById("modalImagem");
-  if (local.imagem) {
-    img.src = local.imagem;
-    img.style.display = "block";
-  } else {
-    img.style.display = "none";
-  }
+  const img = document.getElementById("modalImg");
+  img.src = fazenda.imagem;
+  img.style.display = fazenda.imagem ? "block" : "none";
 
   document.getElementById("modalFazenda").style.display = "block";
 };
