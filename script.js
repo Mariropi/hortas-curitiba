@@ -175,8 +175,7 @@ window.buscarEndereco = function () {
   window.abrirModal = function () {
     document.getElementById("modalFazenda").style.display = "block";
   };
-  
-window.abrirModal = function (index) {
+  window.abrirModal = function (index) {
   const local = locais[index];
 
   document.getElementById("modalTitulo").innerText = local.nome;
@@ -193,10 +192,8 @@ window.abrirModal = function (index) {
   document.getElementById("modalFazenda").style.display = "block";
 };
 
+window.fecharModal = function () {
+  document.getElementById("modalFazenda").style.display = "none";
 };
-
-  window.fecharModal = function () {
-    document.getElementById("modalFazenda").style.display = "none";
-  };
 
 });
