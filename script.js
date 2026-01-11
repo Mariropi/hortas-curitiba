@@ -67,5 +67,11 @@ document.addEventListener("DOMContentLoaded", function () {
   window.buscarEndereco = function () {
     alert("Busca em desenvolvimento — base funcionando!");
   };
+window.abrirModal = function () {
+  document.getElementById("modalFazenda").style.display = "block";
+};
 
-});
+window.fecharModal = function () {
+  document.getElementById("modalFazenda").style.display = "none";
+};
+  
