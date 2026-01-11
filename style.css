@@ -259,3 +259,32 @@ header {
   border-radius: 12px;
   margin-bottom: 16px;
 }
+.modal-contato {
+  text-align: center;
+}
+
+.modal-contato h2 {
+  margin-bottom: 20px;
+}
+
+.contato-info {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 20px 0;
+  font-size: 1.05rem;
+}
+
+.contato-info p {
+  margin: 0;
+}
+
+.contato-info a {
+  color: #2e7d32;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.contato-info a:hover {
+  text-decoration: underline;
+}
