@@ -100,7 +100,7 @@ div.innerHTML = `
 
   ${
     local.tipo === "fazenda"
-      <button onclick='abrirModal(${JSON.stringify(local)})'>
+<button onclick="abrirModal(${index})">
   Conhecer a Fazenda
 </button>
   }
@@ -109,7 +109,6 @@ div.innerHTML = `
     Ver no mapa
   </button>
 `;
-
 
     cards.appendChild(div);
   });
@@ -145,7 +144,7 @@ window.buscarEndereco = function () {
       let maisProxima = null;
       let menorDistancia = Infinity;
 
-      locais.forEach(local => {
+   locais.forEach((local, index) => {
         const distancia = Math.sqrt(
           Math.pow(local.lat - origemLat, 2) +
           Math.pow(local.lng - origemLng, 2)
@@ -179,14 +178,23 @@ window.buscarEndereco = function () {
     document.getElementById("modalFazenda").style.display = "block";
   };
   
-window.abrirModal = function (local) {
-  const modal = document.getElementById("modalFazenda");
+window.abrirModal = function (index) {
+  const local = locais[index];
 
   document.getElementById("modalTitulo").innerText = local.nome;
-  document.getElementById("modalImagem").src = local.imagem || "";
   document.getElementById("modalEndereco").innerText = local.endereco;
 
-  modal.style.display = "block";
+  const img = document.getElementById("modalImagem");
+  if (local.imagem) {
+    img.src = local.imagem;
+    img.style.display = "block";
+  } else {
+    img.style.display = "none";
+  }
+
+  document.getElementById("modalFazenda").style.display = "block";
+};
+
 };
 
   window.fecharModal = function () {
