@@ -50,13 +50,20 @@ document.addEventListener("DOMContentLoaded", function () {
   locais.forEach(local => {
     const div = document.createElement("div");
   div.className = local.tipo === "fazenda" ? "card fazenda" : "card";
+ div.innerHTML = `
+  <h3>${local.nome}</h3>
+  <p>${local.endereco}</p>
 
-    div.innerHTML = `
-      <h3>${local.nome}</h3>
-      <p>${local.endereco}</p>
-      <button onclick="verNoMapa(${local.lat}, ${local.lng})">Ver no mapa</button>
-    `;
+  ${local.tipo === "fazenda"
+    ? `<button onclick="abrirModal()">Conhecer a Fazenda</button>`
+    : ""
+  }
 
+  <button onclick="verNoMapa(${local.lat}, ${local.lng})">Ver no mapa</button>
+`;
+
+  <button onclick="verNoMapa(${local.lat}, ${local.lng})">Ver no mapa</button>
+`;
     cards.appendChild(div);
   });
 
