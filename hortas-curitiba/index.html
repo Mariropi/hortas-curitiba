@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Hortas Urbanas de Curitiba</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Leaflet -->
+  <link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-<header>
-  <h1>🌱 Hortas Urbanas de Curitiba</h1>
-  <p>Mapa interativo das hortas comunitárias</p>
-</header>
-
 <section class="curiosidades">
-  <h2>Dados que colocam Curitiba em destaque</h2>
+  <h2>Dados que colocam Curitiba em destaque 🌱</h2>
   <ul>
-    <li>216 hortas urbanas ativas</li>
-    <li>1,6 mil toneladas de produção anual</li>
-    <li>32 mil pessoas beneficiadas</li>
-    <li>130 colmeias de abelhas sem ferrão</li>
-    <li>3 Fazendas Urbanas Municipais</li>
+    <li><strong>216</strong> hortas urbanas ativas</li>
+    <li><strong>1,6 mil toneladas</strong> de frutas e verduras por ano</li>
+    <li><strong>32 mil pessoas</strong> beneficiadas diretamente</li>
+    <li><strong>130 colmeias</strong> de abelhas sem ferrão</li>
+    <li><strong>3 Fazendas Urbanas Municipais</strong> em funcionamento</li>
   </ul>
 </section>
 
+<header class="topo">
+  <h1>🌱 Hortas Urbanas de Curitiba</h1>
+  <p>Mapa interativo das hortas e fazendas urbanas</p>
+</header>
+
 <section class="busca">
-  <input type="text" id="endereco" placeholder="Digite seu endereço">
-  <button onclick="buscarEndereco()">Buscar horta próxima</button>
+  <input type="text" id="endereco" placeholder="Digite seu endereço ou bairro">
+  <button onclick="buscarEndereco()">Buscar horta mais próxima</button>
 </section>
 
 <div id="map"></div>
 
 <section id="cards"></section>
-  
+
+<!-- Card fixo quando não encontrar horta -->
 <div id="naoEncontrou" class="cta-container" style="display:none">
   <div class="cta-box">
     <h3>🌱 Não encontrou uma horta?</h3>
@@ -46,20 +47,73 @@
       <strong>Central 156</strong>.
     </p>
     <p>
-      Eles possuem dados atualizados e podem direcionar você corretamente.
+      Eles possuem dados atualizados e podem direcioná-lo corretamente.
     </p>
   </div>
 </div>
 
-<footer>
-  <a href="https://www.curitiba.pr.gov.br/servicos/hortas-comunitarias-urbanas-curitiba/107" target="_blank">
-    Quero montar uma horta 🌿
-  </a>
-</footer>
+<!-- CTA criar horta -->
+<div class="cta-container">
+  <div class="cta-box">
+    <h3>🌱 Quer criar uma horta comunitária?</h3>
+    <p>
+      Saiba como participar do programa de hortas urbanas de Curitiba
+      e transformar seu bairro.
+    </p>
+    <a
+      href="https://www.curitiba.pr.gov.br/servicos/hortas-comunitarias-urbanas-curitiba/107"
+      target="_blank"
+      class="cta-button"
+    >
+      Clique aqui e saiba mais
+    </a>
+  </div>
+</div>
+
+<!-- MODAL FAZENDAS -->
+<div id="modalFazenda" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModal()">×</span>
+
+    <h2 id="modalTitulo"></h2>
+    <img id="modalImagem">
+
+    <p id="modalDescricao"></p>
+
+    <hr>
+
+    <h3>Quem pode visitar/participar?</h3>
+    <p>
+      Qualquer cidadão (menores acompanhados) e pessoas com deficiência (PcD).
+    </p>
+
+    <h3>Visitas</h3>
+    <p>
+      Segunda a sexta-feira, das 8h às 12h e das 13h às 17h.<br>
+      Visitas guiadas: Guia Curitiba (buscar “Fazenda Urbana”).<br>
+      Cancelamento em caso de condições climáticas adversas.
+    </p>
+
+    <h3>Cursos</h3>
+    <p>
+      Cursos presenciais mensais (vagas limitadas).<br>
+      Cursos EAD pelo Aprendere (SMSAN).
+    </p>
+
+    <h3>Contato</h3>
+    <p>
+      ☎️ (41) 3267-9128<br>
+      📱 <a href="https://wa.me/554199510900" target="_blank">(41) 9951-0900</a><br>
+      ✉️ fazendaurbana@curitiba.pr.gov.br<br>
+      ✉️ agriculturaurbana@curitiba.pr.gov.br
+    </p>
+
+    <button class="modal-btn" onclick="fecharModal()">Fechar</button>
+  </div>
+</div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="script.js"></script>
 
 </body>
 </html>
-
