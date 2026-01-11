@@ -83,6 +83,7 @@ const locais = [
   }
 ];
 
+
   const cards = document.getElementById("cards");
 
   locais.forEach(local => {
