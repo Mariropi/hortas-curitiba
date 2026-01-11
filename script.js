@@ -115,13 +115,62 @@ document.addEventListener("DOMContentLoaded", function () {
     map.setView([lat, lng], 16);
   };
 
-  window.buscarEndereco = function () {
-    alert(
-      "Procure o coordenador da horta mais próxima (via associações de moradores),\n" +
-      "ou entre em contato com a Prefeitura pela Central 156 ou\n" +
-      "agriculturaurbana@curitiba.pr.gov.br"
-    );
-  };
+window.buscarEndereco = function () {
+  const endereco = document.getElementById("endereco").value;
+
+  if (!endereco) {
+    alert("Por favor, digite seu endereço.");
+    return;
+  }
+
+  fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${endereco}, Curitiba, PR`)
+    .then(response => response.json())
+    .then(data => {
+      if (!data || data.length === 0) {
+        alert(
+          "Endereço não encontrado.\n\n" +
+          "Procure o coordenador da horta mais próxima (associações de moradores),\n" +
+          "ou entre em contato com a Prefeitura pela Central 156 ou\n" +
+          "agriculturaurbana@curitiba.pr.gov.br"
+        );
+        return;
+      }
+
+      const origemLat = parseFloat(data[0].lat);
+      const origemLng = parseFloat(data[0].lon);
+
+      let maisProxima = null;
+      let menorDistancia = Infinity;
+
+      locais.forEach(local => {
+        const distancia = Math.sqrt(
+          Math.pow(local.lat - origemLat, 2) +
+          Math.pow(local.lng - origemLng, 2)
+        );
+
+        if (distancia < menorDistancia) {
+          menorDistancia = distancia;
+          maisProxima = local;
+        }
+      });
+
+      if (!maisProxima) {
+        alert(
+          "Nenhuma horta encontrada próxima a você.\n\n" +
+          "Entre em contato com a Central 156 ou agriculturaurbana@curitiba.pr.gov.br"
+        );
+        return;
+      }
+
+      window.open(
+        `https://www.google.com/maps/dir/?api=1&origin=${origemLat},${origemLng}&destination=${maisProxima.lat},${maisProxima.lng}`,
+        "_blank"
+      );
+    })
+    .catch(() => {
+      alert("Erro ao buscar o endereço. Tente novamente.");
+    });
+};
 
   window.abrirModal = function () {
     document.getElementById("modalFazenda").style.display = "block";
