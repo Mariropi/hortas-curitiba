@@ -93,3 +93,26 @@ header {
   float: right;
   cursor: pointer;
 }
+.curiosidades {
+  max-width: 1100px;
+  margin: 30px auto;
+  background: #fff7cc;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.curiosidades h2 {
+  margin-bottom: 12px;
+  color: #2f6b2f;
+}
+
+.curiosidades ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.curiosidades li {
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+}
