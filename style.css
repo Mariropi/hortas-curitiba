@@ -100,7 +100,7 @@ header {
   height: 160px;
   object-fit: cover;
   border-radius: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .card button {
