@@ -1,97 +1,94 @@
-@import url('https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap');
+
+ {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  margin: 0;
-  font-family: 'ADLaM Display', cursive;
-  background: #F5FFF7;
-  color: #2F4F2F;
+  font-family: 'ADLaM Display', Arial, sans-serif;
+  background-color: #f1fff4;
+  color: #2e2e2e;
 }
 
 header {
-  background: #CDEED6;
+  background: linear-gradient(90deg, #d9f5e5, #e7f7ff);
+  padding: 30px 20px;
   text-align: center;
-  padding: 25px;
+}
+
+header h1 {
+  font-size: 2rem;
+  color: #2e7d32;
+}
+
+header p {
+  margin-top: 8px;
+  font-size: 1rem;
+}
+
+.curiosidades {
+  background-color: #fff4c2;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.curiosidades h2 {
+  color: #2e7d32;
+  margin-bottom: 10px;
+}
+
+.curiosidades ul {
+  padding-left: 20px;
+}
+
+.curiosidades li {
+  margin-bottom: 6px;
 }
 
 .busca {
-  text-align: center;
-  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  flex-wrap: wrap;
 }
 
 .busca input {
   padding: 10px;
-  width: 80%;
-  max-width: 320px;
+  width: 260px;
   border-radius: 8px;
   border: 1px solid #ccc;
 }
 
 .busca button {
-  margin-top: 10px;
-  padding: 10px 15px;
-  background: #6DBE8B;
-  color: #fff;
-  border: none;
+  padding: 10px 16px;
   border-radius: 8px;
+  border: none;
+  background-color: #66bb6a;
+  color: white;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.busca button:hover {
+  background-color: #4caf50;
 }
 
 #map {
   height: 400px;
   margin: 20px;
-  border-radius: 12px;
+  border-radius: 16px;
+  z-index: 1;
+
+  /* Mobile */
   touch-action: pan-x pan-y;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-#cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 15px;
-  padding: 20px;
-}
-
-.card {
-  background: white;
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-}
-
-.card img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.card button {
-  margin-top: 10px;
-  padding: 8px;
-  width: 100%;
-  background: #2F7D32;
-  color: white;
-  border: none;
-  border-radius: 6px;
-}
-
-/* Modal */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-}
-
-.modal-content {
-  background: white;
-  margin: 10% auto;
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 500px;
-}
-
-.close {
-  float: right;
-  font-size: 26px;
-  cursor: pointer;
-}
 #cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -102,12 +99,11 @@ header {
 }
 
 .card {
-  background: #ffffff;
-  border-radius: 16px;
+  background-color: #ffffff;
+  border-radius: 18px;
   padding: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  cursor: default;
 }
 
 .card:hover {
@@ -116,29 +112,33 @@ header {
 }
 
 .card h3 {
-  margin-top: 0;
-  margin-bottom: 8px;
   color: #2e7d32;
-  font-size: 1.2rem;
+  margin-bottom: 6px;
 }
 
 .card p {
-  margin: 6px 0;
   font-size: 0.95rem;
-  color: #444;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 12px;
+  margin: 10px 0;
+  object-fit: cover;
 }
 
 .card button {
   width: 100%;
+  padding: 10px;
   margin-top: 10px;
-  padding: 10px 14px;
-  border: none;
   border-radius: 10px;
+  border: none;
   background-color: #2e7d32;
-  color: #fff;
+  color: #ffffff;
   font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;              
+  cursor: pointer;        /* 👈 mãozinha */
   transition: background 0.2s ease, transform 0.1s ease;
 }
 
@@ -148,10 +148,25 @@ header {
 }
 
 .card button:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
-.card button,
-.card a {
+a {
+  color: #2e7d32;
+  font-weight: 500;
   cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px){
+  header h1 {
+    font-size: 1.6rem;
+  }
+
+  #map {
+    height: 300px;
+  }
 }
