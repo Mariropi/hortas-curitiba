@@ -6,9 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -37,67 +35,66 @@
 
 <div id="map"></div>
 
-<section id="cards" class="cards"></section>
-  
+<section id="cards"></section>
+
 <div class="cta-container">
   <div class="cta-box">
     <h3>🌱 Quer criar uma horta comunitária?</h3>
-    <p>
-      Saiba como participar do programa de hortas urbanas de Curitiba
-      e transformar seu bairro.
-    </p>
-    <a
-      href="https://www.curitiba.pr.gov.br/servicos/hortas-comunitarias-urbanas-curitiba/107"
-      target="_blank"
-      class="cta-button"
-    >
+    <p>Saiba como participar do programa de hortas urbanas de Curitiba.</p>
+    <a href="https://www.curitiba.pr.gov.br/servicos/hortas-comunitarias-urbanas-curitiba/107"
+       target="_blank" class="cta-button">
       Clique aqui e saiba mais
     </a>
   </div>
 </div>
 
-<div id="cardSemHorta" class="cta-container">
+<div id="aviso156" class="cta-container">
   <div class="cta-box">
-    <h3>🌱 Não encontrou uma horta próxima?</h3>
+    <h3>📍 Não encontrou uma horta próxima?</h3>
     <p>
-      Entre em contato com o <strong>Departamento de Estratégias de Segurança Alimentar e Nutricional</strong>
-      para orientações sobre vagas ou implantação de novas hortas.
+      Para obter a localização exata das hortas mais próximas ao seu endereço
+      ou bairro específico, e saber quais delas são geridas por associações de
+      moradores, o canal mais eficiente é a <strong>Central 156</strong>.
     </p>
-
-    <p>
-      📱 <strong>WhatsApp:</strong> (41) 99925-8575<br>
-      ⏰ <strong>Horário:</strong> 8h às 12h e 13h às 17h (segunda a sexta)<br>
-      ✉️ <strong>E-mail:</strong>
-      <a href="mailto:agriculturaurbana@curitiba.pr.gov.br">
-        agriculturaurbana@curitiba.pr.gov.br
-      </a>
-    </p>
+    <p>📞 Central 156 (telefone ou chat online)</p>
   </div>
 </div>
 
+<!-- MODAL FAZENDAS -->
 <div id="modalFazenda" class="modal">
-  <div class="modal-content modal-contato">
+  <div class="modal-content">
     <span class="close" onclick="fecharModal()">×</span>
 
-    <h2>📞 Contato – Fazendas Urbanas</h2>
+    <h2 id="modalTitulo"></h2>
+    <img id="modalImagem">
 
-    <div class="contato-info">
-      <p>☎️ <strong>Telefone:</strong> (41) 3267-9128</p>
+    <p id="modalDescricao"></p>
 
-      <p>
-        📱 <strong>WhatsApp:</strong>
-        <a href="https://wa.me/554199510900" target="_blank">
-          (41) 9951-0900
-        </a>
-      </p>
+    <hr>
 
-      <p>
-        ✉️ <strong>E-mail:</strong><br>
-        <a href="mailto:fazendaurbana@curitiba.pr.gov.br">
-          fazendaurbana@curitiba.pr.gov.br
-        </a>
-      </p>
-    </div>
+    <h4>Quem pode visitar?</h4>
+    <p>Qualquer cidadão (menores acompanhados) e pessoas com deficiência (PcD).</p>
+
+    <h4>Visitas</h4>
+    <p>
+      Segunda a sexta, das 8h às 12h e das 13h às 17h.<br>
+      Visitas guiadas pelo Guia Curitiba.<br>
+      Canceladas em caso de clima adverso.
+    </p>
+
+    <h4>Cursos</h4>
+    <p>
+      Cursos presenciais mensais (vagas limitadas).<br>
+      Cursos EAD pelo Aprendere (SMSAN).
+    </p>
+
+    <h4>Contato</h4>
+    <p>
+      ☎️ (41) 3267-9128<br>
+      📱 <a href="https://wa.me/554199510900" target="_blank">(41) 9951-0900</a><br>
+      ✉️ fazendaurbana@curitiba.pr.gov.br<br>
+      ✉️ agriculturaurbana@curitiba.pr.gov.br
+    </p>
 
     <button class="modal-btn" onclick="fecharModal()">Fechar</button>
   </div>
@@ -108,5 +105,3 @@
 
 </body>
 </html>
-
-
