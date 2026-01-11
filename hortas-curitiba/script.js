@@ -37,6 +37,10 @@ hortas.forEach(horta => {
   `;
 });
 
+function mostrarNaoEncontrou() {
+  document.getElementById("naoEncontrou").style.display = "flex";
+}
+
 function buscarEndereco() {
   let endereco = document.getElementById("endereco").value;
   fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${endereco}`)
@@ -47,3 +51,4 @@ function buscarEndereco() {
       }
     });
 }
+
