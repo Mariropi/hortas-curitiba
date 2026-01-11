@@ -10,12 +10,14 @@ body {
   color: #2e2e2e;
 }
 
-header {
+/* TOPO */
+.topo {
   background: linear-gradient(90deg, #d9f5e5, #e7f7ff);
   padding: 30px 20px;
   text-align: center;
 }
 
+/* BUSCA */
 .busca {
   display: flex;
   justify-content: center;
@@ -38,14 +40,15 @@ header {
   cursor: pointer;
 }
 
+/* MAPA */
 #map {
   width: 100%;
   height: 420px;
   margin: 30px auto;
   border-radius: 14px;
-  z-index: 1;
 }
 
+/* CURIOSIDADES */
 .curiosidades {
   max-width: 1100px;
   margin: 30px auto;
@@ -55,20 +58,7 @@ header {
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.curiosidades h2 {
-  margin-bottom: 12px;
-  color: #2f6b2f;
-}
-
-.curiosidades ul {
-  list-style: none;
-}
-
-.curiosidades li {
-  margin-bottom: 8px;
-  font-size: 1.05rem;
-}
-
+/* CARDS */
 #cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -81,13 +71,6 @@ header {
   border-radius: 16px;
   padding: 20px;
   box-shadow: 0 8px 20px rgba(0,0,0,.08);
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
 
 .card.fazenda {
@@ -95,15 +78,26 @@ header {
   background: #f0fff4;
 }
 
-.card img {
+.card img,
+.img-placeholder {
   width: 100%;
   height: 160px;
-  object-fit: cover;
   border-radius: 12px;
+  object-fit: cover;
   margin-bottom: 12px;
 }
 
-.card button {
+.img-placeholder {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+/* BOTÕES */
+.card button,
+.modal-btn {
   margin-top: 10px;
   width: 100%;
   padding: 10px;
@@ -114,89 +108,7 @@ header {
   cursor: pointer;
 }
 
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.modal-content {
-  background: #ffffff;
-  width: 100%;
-  max-width: 420px;
-  padding: 32px 28px;
-  border-radius: 20px;
-  position: relative;
-  text-align: center;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
-}
-
-.modal-content h2 {
-  color: #2e7d32;
-  margin-bottom: 16px;
-}
-
-.modal-content p {
-  margin-bottom: 12px;
-  line-height: 1.5;
-}
-
-.close {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  font-size: 26px;
-  cursor: pointer;
-}
-
-.modal-btn {
-  background: #2e7d32;
-  color: #fff;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.cta-container {
-  display: flex;
-  justify-content: center;
-  margin: 40px 0;
-}
-
-.cta-horta {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #1b5e20;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.cta-horta::before {
-  content: "🌱";
-  font-size: 1.5rem;
-}
-
-.cta-horta a {
-  background: linear-gradient(135deg, #4CAF50, #2e7d32);
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: transform 0.3s ease;
-}
-
-.cta-horta a:hover {
-  transform: scale(1.08);
-  cursor: pointer;
-}
+/* CTA */
 .cta-container {
   display: flex;
   justify-content: center;
@@ -204,155 +116,57 @@ header {
 }
 
 .cta-box {
-  background: linear-gradient(135deg, #e8f8ec, #ffffff);
+  background: #ffffff;
   border-radius: 20px;
-  padding: 40px 30px;
+  padding: 40px;
   max-width: 700px;
-  width: 100%;
   text-align: center;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-}
-
-.cta-box h3 {
-  font-size: 1.8rem;
-  color: #1b5e20;
-  margin-bottom: 12px;
-}
-
-.cta-box p {
-  font-size: 1.1rem;
-  margin-bottom: 24px;
-  color: #2e2e2e;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
 .cta-button {
   display: inline-block;
+  margin-top: 20px;
   padding: 14px 28px;
-  background: linear-gradient(135deg, #4CAF50, #2e7d32);
-  color: #ffffff;
+  background: #2e7d32;
+  color: #fff;
   border-radius: 30px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  text-decoration: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.cta-button:hover {
-  transform: scale(1.08);
-  box-shadow: 0 8px 20px rgba(46, 125, 50, 0.4);
-  cursor: pointer;
-}
-.img-placeholder {
-  width: 100%;
-  height: 160px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  color: #2e7d32;
-  margin-bottom: 12px;
-}
-.modal-content img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 16px;
-}
-.modal-contato {
-  text-align: center;
-}
-
-.modal-contato h2 {
-  margin-bottom: 20px;
-}
-
-.contato-info {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  margin: 20px 0;
-  font-size: 1.05rem;
-}
-
-.contato-info p {
-  margin: 0;
-}
-
-.contato-info a {
-  color: #2e7d32;
-  font-weight: bold;
   text-decoration: none;
 }
 
-.contato-info a:hover {
-  text-decoration: underline;
-}
+/* CONTATO */
 .contato-fixo {
   max-width: 700px;
-  margin: 30px auto 80px auto;
-  padding: 28px 24px;
+  margin: 40px auto;
   background: #ffffff;
-  border-radius: 18px;
+  padding: 24px;
+  border-radius: 16px;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
 }
 
-.contato-fixo h3 {
-  color: #2e7d32;
-  margin-bottom: 20px;
-  font-size: 1.6rem;
-}
-
-.contato-fixo p {
-  font-size: 1.1rem;
-  margin-bottom: 12px;
-}
-
-.contato-fixo a {
-  color: #2e7d32;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.contato-fixo a:hover {
-  text-decoration: underline;
-}
+/* MODAL */
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: rgba(0,0,0,.6);
   z-index: 9999;
 }
 
 .modal-content {
   background: #fff;
   max-width: 600px;
-  width: 100%;
-  padding: 28px;
-  border-radius: 20px;
-  overflow-y: auto;
-  max-height: 90vh;
-}
-
-.modal-content img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 16px;
+  margin: 5% auto;
+  padding: 24px;
+  border-radius: 16px;
+  position: relative;
 }
 
 .close {
   position: absolute;
-  right: 18px;
   top: 12px;
+  right: 16px;
   font-size: 26px;
   cursor: pointer;
 }
