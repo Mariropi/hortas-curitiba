@@ -125,11 +125,16 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   let mapModalInstance = null;
+  
+window.verNoMapaMobile = function (lat, lng) {
+  map.setView([lat, lng], 16);
 
-window.verNoMapa = function (lat, lng) {
-  // Se for mobile, abre modal
-  if (window.innerWidth <= 768) {
-    document.getElementById("mapModal").style.display = "block";
+  document.getElementById("map").scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+};
+
 
     setTimeout(() => {
       if (mapModalInstance) {
@@ -159,41 +164,58 @@ window.fecharMapaModal = function () {
   }
 };
 
-  window.buscarEndereco = function () {
-    const endereco = document.getElementById("endereco").value.trim();
-    if (!endereco) return;
+function calcularDistanciaKm(lat1, lon1, lat2, lon2) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
 
-    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${endereco}, Curitiba, PR`)
-      .then(r => r.json())
-      .then(data => {
-        if (!data.length) {
-          mostrarNaoEncontrou();
-          return;
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * Math.PI / 180) *
+    Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+  return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+}
+window.buscarEndereco = function () {
+  const endereco = document.getElementById("endereco").value.trim();
+  if (!endereco) return alert("Digite seu endereço.");
+
+  fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${endereco}, Curitiba, PR`)
+    .then(res => res.json())
+    .then(data => {
+      if (!data.length) {
+        mostrarNaoEncontrou();
+        return;
+      }
+
+      const origemLat = parseFloat(data[0].lat);
+      const origemLng = parseFloat(data[0].lon);
+
+      let maisProxima = null;
+      let menorDistancia = Infinity;
+
+      locais.forEach(local => {
+        const d = calcularDistanciaKm(
+          origemLat, origemLng,
+          local.lat, local.lng
+        );
+
+        if (d < menorDistancia) {
+          menorDistancia = d;
+          maisProxima = local;
         }
+      });
 
-        const lat = parseFloat(data[0].lat);
-        const lng = parseFloat(data[0].lon);
+      if (!maisProxima || menorDistancia > 10) {
+        mostrarNaoEncontrou();
+        return;
+      }
 
-        let maisProxima = null;
-        let menor = Infinity;
-
-        locais.forEach(local => {
-          const d = distanciaKm(lat, lng, local.lat, local.lng);
-          if (d <= 10 && d < menor) {
-            menor = d;
-            maisProxima = local;
-          }
-        });
-
-        if (!maisProxima) {
-          mostrarNaoEncontrou();
-          return;
-        }
-
-        map.setView([maisProxima.lat, maisProxima.lng], 15);
-      })
-      .catch(mostrarNaoEncontrou);
-  };
+      verNoMapaMobile(maisProxima.lat, maisProxima.lng);
+    })
+    .catch(mostrarNaoEncontrou);
+};
 
   function mostrarNaoEncontrou() {
     const aviso = document.createElement("div");
