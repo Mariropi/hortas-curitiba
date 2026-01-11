@@ -100,8 +100,9 @@ div.innerHTML = `
 
   ${
     local.tipo === "fazenda"
-      ? `<button onclick="abrirModal()">Conhecer a Fazenda</button>`
-      : ""
+      <button onclick='abrirModal(${JSON.stringify(local)})'>
+  Conhecer a Fazenda
+</button>
   }
 
   <button onclick="verNoMapa(${local.lat}, ${local.lng})">
@@ -177,6 +178,16 @@ window.buscarEndereco = function () {
   window.abrirModal = function () {
     document.getElementById("modalFazenda").style.display = "block";
   };
+  
+window.abrirModal = function (local) {
+  const modal = document.getElementById("modalFazenda");
+
+  document.getElementById("modalTitulo").innerText = local.nome;
+  document.getElementById("modalImagem").src = local.imagem || "";
+  document.getElementById("modalEndereco").innerText = local.endereco;
+
+  modal.style.display = "block";
+};
 
   window.fecharModal = function () {
     document.getElementById("modalFazenda").style.display = "none";
