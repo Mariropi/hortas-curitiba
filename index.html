@@ -56,28 +56,34 @@
   </div>
 </div>
   
-<div class="contato-fixo">
-  <h3>📞 Contato – Fazendas Urbanas</h3>
+<div id="modalFazenda" class="modal">
+  <div class="modal-content modal-contato">
+    <span class="close" onclick="fecharModal()">×</span>
 
-  <p>
-    ☎️ <strong>Telefone:</strong> (41) 3267-9128
-  </p>
+    <h2>📞 Contato – Fazendas Urbanas</h2>
 
-  <p>
-    📱 <strong>WhatsApp:</strong>
-    <a href="https://wa.me/554199510900" target="_blank">
-      (41) 9951-0900
-    </a>
-  </p>
+    <div class="contato-info">
+      <p>☎️ <strong>Telefone:</strong> (41) 3267-9128</p>
 
-  <p>
-    ✉️ <strong>E-mail:</strong>
-    <a href="mailto:fazendaurbana@curitiba.pr.gov.br">
-      fazendaurbana@curitiba.pr.gov.br
-    </a>
-  </p>
+      <p>
+        📱 <strong>WhatsApp:</strong>
+        <a href="https://wa.me/554199510900" target="_blank">
+          (41) 9951-0900
+        </a>
+      </p>
+
+      <p>
+        ✉️ <strong>E-mail:</strong><br>
+        <a href="mailto:fazendaurbana@curitiba.pr.gov.br">
+          fazendaurbana@curitiba.pr.gov.br
+        </a>
+      </p>
+    </div>
+
+    <button class="modal-btn" onclick="fecharModal()">Fechar</button>
+  </div>
 </div>
-  
+
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="script.js"></script>
 
