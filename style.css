@@ -183,31 +183,39 @@ header {
   width: 100%;
   height: 160px;
   object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 10px;
+  border-radius: 12px
+    
+.cta-container {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
 }
 
 .cta-horta {
-  text-align: center;
-  margin: 30px auto;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 600;
+  text-align: center;
+  color: #2f5d3a;
 }
 
 .cta-horta a {
   display: inline-block;
-  margin-left: 6px;
-  padding: 8px 16px;
-  background-color: #4CAF50;
-  color: #ffffff;
-  border-radius: 20px;
+  margin-left: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #4CAF50, #2e7d32);
+  color: #fff;
+  border-radius: 25px;
   text-decoration: none;
   font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .cta-horta a:hover {
-  background-color: #3e8e41;
-  transform: scale(1.05);
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #43a047, #1b5e20);
   cursor: pointer;
 }
+;
+  margin-bottom: 10px;
+}
+
