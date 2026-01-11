@@ -49,6 +49,22 @@ document.addEventListener("DOMContentLoaded", function () {
       lng: -49.3606,
       endereco: "Rua Olívia G. Freitas, 471 – Orleans"
     }
+    {
+  nome: "Horta Comunitária Cristo Rei",
+  tipo: "horta",
+  lat: -25.4359,
+  lng: -49.2413,
+  endereco: "R. Roberto Cichon, 183 – Cristo Rei",
+  descricao: "Horta comunitária em área urbana, promovendo convivência e segurança alimentar."
+},
+{
+  nome: "Horta Maria Angélica",
+  tipo: "horta",
+  lat: -25.5385,
+  lng: -49.2958,
+  endereco: "Rua Monte das Oliveiras, 260 – Pinheirinho",
+  descricao: "Horta comunitária voltada à educação ambiental e produção local."
+}
   ];
 
   const cards = document.getElementById("cards");
