@@ -92,3 +92,66 @@ header {
   font-size: 26px;
   cursor: pointer;
 }
+#cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #2e7d32;
+  font-size: 1.2rem;
+}
+
+.card p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.card button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  background-color: #2e7d32;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;              
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.card button:hover {
+  background-color: #256428;
+  transform: scale(1.02);
+}
+
+.card button:active {
+  transform: scale(0.98);
+}
+
+.card button,
+.card a {
+  cursor: pointer;
+}
