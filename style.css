@@ -170,3 +170,23 @@ body {
   font-size: 26px;
   cursor: pointer;
 }
+.info-nao-encontrou {
+  max-width: 800px;
+  margin: 40px auto 80px auto;
+  background: #fff;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.info-nao-encontrou h3 {
+  color: #2e7d32;
+  margin-bottom: 16px;
+}
+
+.info-nao-encontrou p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
