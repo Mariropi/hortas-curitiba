@@ -6,92 +6,82 @@ document.addEventListener("DOMContentLoaded", function () {
     attribution: "© OpenStreetMap"
   }).addTo(map);
 
-    const locais = [
-{
-  nome: "Fazenda Urbana Cajuru",
-  tipo: "fazenda",
-  lat: -25.4422,
-  lng: -49.2316,
-  endereco: "Av. Prefeito Maurício Fruet, 1880 – Cajuru",
-  imagem: "https://www.bemparana.com.br/wp-content/uploads/2023/07/fazenda-urbana-cajuru.jpg"
-},
-
-      {
-      nome: "Fazenda Urbana CIC",
-      tipo: "fazenda",
-      lat: -25.4900288,
-      lng: -49.3539665,
-      endereco: "Rua Maria Lúcia Locher Athayde, 7974 – São Miguel"
-      imagem: "https://lh3.googleusercontent.com/p/AG0ilSzjPTTYCXlgtikRsJEsRckENO9M6ZEjW0xFJ5-PPfr4gQHPXlEBKBeYaPgU0QTbylRNqh1jqdXvpllXvv3iYnSD-A8wMeWRtw0TXLNHyogV04NjEBf-8W6gxLKFexEpCBwEopY86g=w600"
-    },
-    {
-      nome: "Fazenda Urbana Tatuquara",
-      tipo: "fazenda",
-      lat: -25.5877,
-      lng: -49.3482,
-      endereco: "Rua Olivardo Konoroski Bueno, 177 – Tatuquara"
-        },
-
-    {
-      nome: "Horta Projeto Oásis",
-      tipo: "horta",
-      lat: -25.5203,
-      lng: -49.2569,
-      endereco: "Rua Padre Stanislau Trzebialowski, 252 – Alto Boqueirão"
-    },
-    {
-      nome: "Horta Comunitária Cristo Rei",
-      tipo: "horta",
-      lat: -25.4359,
-      lng: -49.2413,
-      endereco: "R. Roberto Cichon, 183 – Cristo Rei"
-    },
-    {
-      nome: "Horta Maria Angélica",
-      tipo: "horta",
-      lat: -25.5385,
-      lng: -49.2958,
-      endereco: "Rua Monte das Oliveiras, 260 – Pinheirinho"
-    },
-    {
-      nome: "Horta Comunitária Amigos da Fazendinha",
-      tipo: "horta",
-      lat: -25.4914,
-      lng: -49.3283,
-      endereco: "R. Afrânio Peixoto, 330 – Fazendinha"
-      imagem: "https://lh3.googleusercontent.com/p/AF1QipMAH5qow5GWBHrvVFD1OC0YM6iwhqv2eQJpqvtV=w600"
-    },
-    {
-      nome: "Horta Comunitária Uma Nova Curitiba",
-      tipo: "horta",
-      lat: -25.4280,
-      lng: -49.3606,
-      endereco: "Rua Olívia G. Freitas, 471 – Orleans"
-      imagem: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSy2i08SAzI2KnbTqXSqcRvYu_pW3B1QRjVTp4wqsyAxaUrZ6tdytO6tkHfxsbrciErVjW0RGvF6sbOKn71lOSO83S3ZJ-NhU9Sd8ErejjQww08Uqq4y8OIoGaaZNCb7DXl068aRsA=w600"
-
-    },
-    {
-      nome: "Horta Comunitária Dembinski II",
-      tipo: "horta",
-      lat: -25.5006,
-      lng: -49.3554,
-      endereco: "R. Rio do Sul, em frente ao nº 2290 – CIC"
-    },
-    {
-      nome: "Horta Comunitária do Jacu",
-      tipo: "horta",
-      lat: -25.4079,
-      lng: -49.2708,
-      endereco: "Rua Ângelo Zeni, em frente ao nº 56 – Bom Retiro"
-    }
-
-  ];
-
-  locais.forEach(local => {
-    L.marker([local.lat, local.lng])
-      .addTo(map)
-      .bindPopup(`<strong>${local.nome}</strong><br>${local.endereco}`);
-  });
+const locais = [
+  {
+    nome: "Fazenda Urbana Cajuru",
+    tipo: "fazenda",
+    lat: -25.4422,
+    lng: -49.2316,
+    endereco: "Av. Prefeito Maurício Fruet, 1880 – Cajuru",
+    imagem: "https://www.bemparana.com.br/wp-content/uploads/2023/07/fazenda-urbana-cajuru.jpg"
+  },
+  {
+    nome: "Fazenda Urbana CIC",
+    tipo: "fazenda",
+    lat: -25.4900288,
+    lng: -49.3539665,
+    endereco: "Rua Maria Lúcia Locher Athayde, 7974 – São Miguel",
+    imagem: "https://lh3.googleusercontent.com/p/AG0ilSzjPTTYCXlgtikRsJEsRckENO9M6ZEjW0xFJ5-PPfr4gQHPXlEBKBeYaPgU0QTbylRNqh1jqdXvpllXvv3iYnSD-A8wMeWRtw0TXLNHyogV04NjEBf-8W6gxLKFexEpCBwEopY86g=w600"
+  },
+  {
+    nome: "Fazenda Urbana Tatuquara",
+    tipo: "fazenda",
+    lat: -25.5877,
+    lng: -49.3482,
+    endereco: "Rua Olivardo Konoroski Bueno, 177 – Tatuquara"
+  },
+  {
+    nome: "Horta Projeto Oásis",
+    tipo: "horta",
+    lat: -25.5203,
+    lng: -49.2569,
+    endereco: "Rua Padre Stanislau Trzebialowski, 252 – Alto Boqueirão"
+  },
+  {
+    nome: "Horta Comunitária Cristo Rei",
+    tipo: "horta",
+    lat: -25.4359,
+    lng: -49.2413,
+    endereco: "R. Roberto Cichon, 183 – Cristo Rei"
+  },
+  {
+    nome: "Horta Maria Angélica",
+    tipo: "horta",
+    lat: -25.5385,
+    lng: -49.2958,
+    endereco: "Rua Monte das Oliveiras, 260 – Pinheirinho"
+  },
+  {
+    nome: "Horta Comunitária Amigos da Fazendinha",
+    tipo: "horta",
+    lat: -25.4914,
+    lng: -49.3283,
+    endereco: "R. Afrânio Peixoto, 330 – Fazendinha",
+    imagem: "https://lh3.googleusercontent.com/p/AF1QipMAH5qow5GWBHrvVFD1OC0YM6iwhqv2eQJpqvtV=w600"
+  },
+  {
+    nome: "Horta Comunitária Uma Nova Curitiba",
+    tipo: "horta",
+    lat: -25.4280,
+    lng: -49.3606,
+    endereco: "Rua Olívia G. Freitas, 471 – Orleans",
+    imagem: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSy2i08SAzI2KnbTqXSqcRvYu_pW3B1QRjVTp4wqsyAxaUrZ6tdytO6tkHfxsbrciErVjW0RGvF6sbOKn71lOSO83S3ZJ-NhU9Sd8ErejjQww08Uqq4y8OIoGaaZNCb7DXl068aRsA=w600"
+  },
+  {
+    nome: "Horta Comunitária Dembinski II",
+    tipo: "horta",
+    lat: -25.5006,
+    lng: -49.3554,
+    endereco: "R. Rio do Sul, em frente ao nº 2290 – CIC"
+  },
+  {
+    nome: "Horta Comunitária do Jacu",
+    tipo: "horta",
+    lat: -25.4079,
+    lng: -49.2708,
+    endereco: "Rua Ângelo Zeni, em frente ao nº 56 – Bom Retiro"
+  }
+];
 
   const cards = document.getElementById("cards");
 
