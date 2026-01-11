@@ -186,3 +186,28 @@ header {
   border-radius: 12px;
   margin-bottom: 10px;
 }
+
+.cta-horta {
+  text-align: center;
+  margin: 30px auto;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.cta-horta a {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: #ffffff;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cta-horta a:hover {
+  background-color: #3e8e41;
+  transform: scale(1.05);
+  cursor: pointer;
+}
