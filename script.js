@@ -82,8 +82,7 @@ const locais = [
     endereco: "Rua Ângelo Zeni, em frente ao nº 56 – Bom Retiro"
   }
 ];
-
-
+  
   const cards = document.getElementById("cards");
 
   locais.forEach(local => {
@@ -109,22 +108,28 @@ div.innerHTML = `
   };
 
 window.buscarEndereco = function () {
-  const endereco = document.getElementById("endereco").value;
+  const endereco = document.getElementById("endereco").value.trim();
 
   if (!endereco) {
     alert("Por favor, digite seu endereço.");
     return;
   }
 
-  fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${endereco}, Curitiba, PR`)
-    .then(response => response.json())
-    .then(data => {
+  const url =
+    "https://nominatim.openstreetmap.org/search?format=json&q=" +
+    encodeURIComponent(endereco + ", Curitiba, PR");
+
+  fetch(url)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
       if (!data || data.length === 0) {
         alert(
           "Endereço não encontrado.\n\n" +
-          "Procure o coordenador da horta mais próxima (associações de moradores),\n" +
-          "ou entre em contato com a Prefeitura pela Central 156 ou\n" +
-          "agriculturaurbana@curitiba.pr.gov.br"
+          "Procure o coordenador da horta mais próxima (associações de moradores)\n" +
+          "ou entre em contato com a Prefeitura pela Central 156\n" +
+          "ou pelo e-mail agriculturaurbana@curitiba.pr.gov.br"
         );
         return;
       }
@@ -135,11 +140,10 @@ window.buscarEndereco = function () {
       let maisProxima = null;
       let menorDistancia = Infinity;
 
-   locais.forEach((local, index) => {
-        const distancia = Math.sqrt(
+      locais.forEach(function (local) {
+        const distancia =
           Math.pow(local.lat - origemLat, 2) +
-          Math.pow(local.lng - origemLng, 2)
-        );
+          Math.pow(local.lng - origemLng, 2);
 
         if (distancia < menorDistancia) {
           menorDistancia = distancia;
@@ -150,17 +154,20 @@ window.buscarEndereco = function () {
       if (!maisProxima) {
         alert(
           "Nenhuma horta encontrada próxima a você.\n\n" +
-          "Entre em contato com a Central 156 ou agriculturaurbana@curitiba.pr.gov.br"
+          "Entre em contato com a Central 156\n" +
+          "ou agriculturaurbana@curitiba.pr.gov.br"
         );
         return;
       }
 
-      window.open(
-        `https://www.google.com/maps/dir/?api=1&origin=${origemLat},${origemLng}&destination=${maisProxima.lat},${maisProxima.lng}`,
-        "_blank"
-      );
+      const rotaUrl =
+        "https://www.google.com/maps/dir/?api=1" +
+        "&origin=" + origemLat + "," + origemLng +
+        "&destination=" + maisProxima.lat + "," + maisProxima.lng;
+
+      window.open(rotaUrl, "_blank");
     })
-    .catch(() => {
+    .catch(function () {
       alert("Erro ao buscar o endereço. Tente novamente.");
     });
 };
