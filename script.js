@@ -103,37 +103,64 @@ document.addEventListener("DOMContentLoaded", function () {
     const div = document.createElement("div");
     div.className = local.tipo === "fazenda" ? "card fazenda" : "card";
 
-    div.innerHTML = `
-      ${local.imagem ? `<img src="${local.imagem}" alt="${local.nome}">` : `<div class="img-placeholder">🌱</div>`}
-      <h3>${local.nome}</h3>
-      <p>${local.endereco}</p>
+  div.innerHTML = `
+  ${local.imagem 
+    ? `<img src="${local.imagem}" alt="${local.nome}">`
+    : `<div class="img-placeholder">🌱</div>`
+  }
 
-      ${local.tipo === "fazenda"
-        ? `<button onclick="abrirModal(${index})">Conhecer a Fazenda</button>`
-        : ""
-      }
+  <h3>${local.nome}</h3>
+  <p>${local.endereco}</p>
 
-      <button onclick="verNoMapa(${local.lat}, ${local.lng})">Ver no mapa</button>
-    `;
+  ${local.tipo === "fazenda"
+    ? `<button onclick="abrirModal(${index})">Conhecer a Fazenda</button>`
+    : ""
+  }
+
+  <button onclick="verNoMapa(${local.lat}, ${local.lng})">
+    Ver no mapa
+  </button>
+`;
 
     cards.appendChild(div);
   });
 
-  window.verNoMapa = function (lat, lng) {
-    map.setView([lat, lng], 16);
-  };
+  let mapModalInstance = null;
 
-  function distanciaKm(lat1, lon1, lat2, lon2) {
-    const R = 6371;
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLon = (lon2 - lon1) * Math.PI / 180;
-    const a =
-      Math.sin(dLat / 2) ** 2 +
-      Math.cos(lat1 * Math.PI / 180) *
-      Math.cos(lat2 * Math.PI / 180) *
-      Math.sin(dLon / 2) ** 2;
-    return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+window.verNoMapa = function (lat, lng) {
+  // Se for mobile, abre modal
+  if (window.innerWidth <= 768) {
+    document.getElementById("mapModal").style.display = "block";
+
+    setTimeout(() => {
+      if (mapModalInstance) {
+        mapModalInstance.remove();
+      }
+
+      mapModalInstance = L.map("mapModalContainer").setView([lat, lng], 16);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap"
+      }).addTo(mapModalInstance);
+
+      L.marker([lat, lng]).addTo(mapModalInstance);
+    }, 200);
+  } 
+  // Desktop continua normal
+  else {
+    map.setView([lat, lng], 16);
+    window.scrollTo({ top: document.getElementById("map").offsetTop - 20, behavior: "smooth" });
   }
+};
+
+window.fecharMapaModal = function () {
+  document.getElementById("mapModal").style.display = "none";
+  if (mapModalInstance) {
+    mapModalInstance.remove();
+    mapModalInstance = null;
+  }
+};
+
 
   window.buscarEndereco = function () {
     const endereco = document.getElementById("endereco").value.trim();
