@@ -195,3 +195,48 @@ header {
   transform: scale(1.08);
   cursor: pointer;
 }
+.cta-container {
+  display: flex;
+  justify-content: center;
+  margin: 60px 20px;
+}
+
+.cta-box {
+  background: linear-gradient(135deg, #e8f8ec, #ffffff);
+  border-radius: 20px;
+  padding: 40px 30px;
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.cta-box h3 {
+  font-size: 1.8rem;
+  color: #1b5e20;
+  margin-bottom: 12px;
+}
+
+.cta-box p {
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+  color: #2e2e2e;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #4CAF50, #2e7d32);
+  color: #ffffff;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cta-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(46, 125, 50, 0.4);
+  cursor: pointer;
+}
