@@ -74,13 +74,10 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
   });
 
-  /* ================= FUNÇÕES ================= */
-
   window.verNoMapa = function (lat, lng) {
     map.setView([lat, lng], 16);
   };
 
-  // 🔹 calcula distância entre dois pontos
   function distancia(lat1, lon1, lat2, lon2) {
     const R = 6371;
     const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -93,48 +90,50 @@ document.addEventListener("DOMContentLoaded", function () {
     return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   }
 
-  // 🔹 busca horta MAIS PRÓXIMA
-  window.buscarEndereco = function () {
-    const endereco = document.getElementById("endereco").value;
+window.buscarEndereco = function () {
+  const endereco = document.getElementById("endereco").value;
 
-    if (!endereco) {
-      alert("Digite seu endereço.");
-      return;
-    }
+  if (!endereco) {
+    alert("Digite seu endereço.");
+    return;
+  }
 
-    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${endereco}`)
-      .then(res => res.json())
-      .then(data => {
-        if (!data.length) {
-          alert(
-`Procure o coordenador da horta mais próxima.
-Entre em contato com a Prefeitura pela Central 156 ou pelos e-mails:
-fazendaurbana@curitiba.pr.gov.br
-agriculturaurbana@curitiba.pr.gov.br`
-          );
-          return;
+  fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${endereco}, Curitiba, PR, Brasil`)
+    .then(res => res.json())
+    .then(data => {
+      if (!data.length || !data[0].display_name.includes("Curitiba")) {
+        alert(
+`Endereço não localizado em Curitiba.
+
+Procure o coordenador da horta mais próxima ou entre em contato com:
+☎️ Central 156
+✉️ agriculturaurbana@curitiba.pr.gov.br`
+        );
+        return;
+      }
+
+      const origemLat = parseFloat(data[0].lat);
+      const origemLng = parseFloat(data[0].lon);
+
+      let maisProxima = locais[0];
+      let menorDistancia = Infinity;
+
+      locais.forEach(l => {
+        const d = distancia(origemLat, origemLng, l.lat, l.lng);
+        if (d < menorDistancia) {
+          menorDistancia = d;
+          maisProxima = l;
         }
-
-        const origemLat = parseFloat(data[0].lat);
-        const origemLng = parseFloat(data[0].lon);
-
-        let maisProxima = locais[0];
-        let menorDistancia = distancia(origemLat, origemLng, locais[0].lat, locais[0].lng);
-
-        locais.forEach(l => {
-          const d = distancia(origemLat, origemLng, l.lat, l.lng);
-          if (d < menorDistancia) {
-            menorDistancia = d;
-            maisProxima = l;
-          }
-        });
-
-        const rota = `https://www.google.com/maps/dir/?api=1&origin=${origemLat},${origemLng}&destination=${maisProxima.lat},${maisProxima.lng}`;
-        window.open(rota, "_blank");
       });
-  };
 
-  // 🔹 informação institucional
+      window.open(
+        `https://www.google.com/maps/dir/?api=1&origin=${origemLat},${origemLng}&destination=${maisProxima.lat},${maisProxima.lng}`,
+        "_blank"
+      );
+    });
+};
+
+
   window.mostrarInfoFazenda = function () {
     alert(
 `Quem pode visitar?
