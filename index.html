@@ -1,83 +1,92 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Hortas Urbanas de Curitiba</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#6DBE8B">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap" rel="stylesheet">
+
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-<header>
-  <h1>🌱 Hortas Urbanas de Curitiba</h1>
-  <p>Mapa interativo de hortas e fazendas urbanas</p>
-</header>
+  <header>
+    <h1>🌱 Hortas Urbanas de Curitiba</h1>
+    <p>Mapa interativo das hortas e fazendas urbanas</p>
+  </header>
 
-<section class="busca">
-  <input type="text" id="endereco" placeholder="Digite seu endereço">
-  <button onclick="buscarEndereco()">Buscar horta mais próxima</button>
-</section>
 
-<div id="map"></div>
+  <section class="busca">
+    <input
+      type="text"
+      id="endereco"
+      placeholder="Digite seu endereço"
+    />
+    <button onclick="buscarEndereco()">
+      Buscar horta mais próxima
+    </button>
+  </section>
 
-<section id="cards"></section>
+ 
+  <div id="map"></div>
 
-<footer>
-  <p>
-    Saiba como criar uma horta comunitária:
-    <a href="https://www.curitiba.pr.gov.br/servicos/hortas-comunitarias-urbanas-curitiba/107" target="_blank">
-      clique aqui
-    </a>
-  </p>
-</footer>
 
-<!-- Modal Fazendas -->
-<div id="modalFazenda" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="fecharModal()">&times;</span>
-    <h2>Visitas às Fazendas Urbanas</h2>
-    <p>Visitas gratuitas de segunda a sexta, das 8h às 17h.</p>
-    <p>Contato: WhatsApp (41) 9951-0900</p>
+  <section id="cards"></section>
+
+  <section class="info-extra">
+    <p>
+      Saiba como criar uma horta comunitária:
+      <a
+        href="https://www.curitiba.pr.gov.br/servicos/hortas-comunitarias-urbanas-curitiba/107"
+        target="_blank"
+      >
+        clique aqui
+      </a>
+    </p>
+  </section>
+
+  <div id="modalFazenda" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal()">&times;</span>
+
+      <h2>🌱 Fazendas Urbanas de Curitiba</h2>
+
+      <p><strong>Quem pode visitar?</strong><br>
+        Qualquer cidadão (menores acompanhados).
+      </p>
+
+      <p><strong>Visitas:</strong><br>
+        Segunda a sexta, das 8h às 12h e das 13h às 17h.<br>
+        Visitas guiadas: Guia Curitiba (buscar “Fazenda Urbana”).
+      </p>
+
+      <p><strong>Cursos:</strong><br>
+        Presenciais mensais e EAD pelo Aprendere (SMSAN).
+      </p>
+
+      <p><strong>Contato:</strong><br>
+        ☎️ (41) 3267-9128<br>
+        📱 WhatsApp: (41) 9951-0900<br>
+        ✉️ fazendaurbana@curitiba.pr.gov.br
+      </p>
+
+      <button onclick="fecharModal()">Fechar</button>
+    </div>
   </div>
-</div>
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="script.js"></script>
-  <!-- Modal Fazenda Urbana -->
-<div id="modalFazenda" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="fecharModal()">&times;</span>
-
-    <h2>🌱 Fazendas Urbanas de Curitiba</h2>
-
-    <p><strong>Quem pode visitar?</strong><br>
-      Qualquer cidadão (menores de 18 anos acompanhados).
-    </p>
-
-    <p><strong>Visitas:</strong><br>
-      Segunda a sexta, das 8h às 12h e das 13h às 17h.<br>
-      Visitas guiadas: Guia Curitiba (buscar “Fazenda Urbana”).
-    </p>
-
-    <p><strong>Cursos:</strong><br>
-      Presenciais mensais e EAD pelo Aprendere (SMSAN).
-    </p>
-
-    <p><strong>Contato:</strong><br>
-      ☎️ (41) 3267-9128<br>
-      📱 WhatsApp: (41) 9951-0900<br>
-      ✉️ fazendaurbana@curitiba.pr.gov.br
-    </p>
-
-    <button onclick="fecharModal()">Fechar</button>
-  </div>
-</div>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="script.js"></script>
 
 </body>
 </html>
+
 
