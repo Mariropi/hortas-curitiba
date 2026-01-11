@@ -7,20 +7,22 @@ document.addEventListener("DOMContentLoaded", function () {
   }).addTo(map);
 
     const locais = [
+{
+  nome: "Fazenda Urbana Cajuru",
+  tipo: "fazenda",
+  lat: -25.4422,
+  lng: -49.2316,
+  endereco: "Av. Prefeito Maurício Fruet, 1880 – Cajuru",
+  imagem: "https://www.bemparana.com.br/wp-content/uploads/2023/07/fazenda-urbana-cajuru.jpg"
+},
 
-    {
-      nome: "Fazenda Urbana Cajuru",
-      tipo: "fazenda",
-      lat: -25.4422,
-      lng: -49.2316,
-      endereco: "Av. Prefeito Maurício Fruet, 1880 – Cajuru"
-    },
-    {
+      {
       nome: "Fazenda Urbana CIC",
       tipo: "fazenda",
       lat: -25.4900288,
       lng: -49.3539665,
       endereco: "Rua Maria Lúcia Locher Athayde, 7974 – São Miguel"
+      imagem: "https://lh3.googleusercontent.com/p/AG0ilSzjPTTYCXlgtikRsJEsRckENO9M6ZEjW0xFJ5-PPfr4gQHPXlEBKBeYaPgU0QTbylRNqh1jqdXvpllXvv3iYnSD-A8wMeWRtw0TXLNHyogV04NjEBf-8W6gxLKFexEpCBwEopY86g=w600"
     },
     {
       nome: "Fazenda Urbana Tatuquara",
@@ -28,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
       lat: -25.5877,
       lng: -49.3482,
       endereco: "Rua Olivardo Konoroski Bueno, 177 – Tatuquara"
-    },
+        },
 
     {
       nome: "Horta Projeto Oásis",
@@ -57,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
       lat: -25.4914,
       lng: -49.3283,
       endereco: "R. Afrânio Peixoto, 330 – Fazendinha"
+      imagem: "https://lh3.googleusercontent.com/p/AF1QipMAH5qow5GWBHrvVFD1OC0YM6iwhqv2eQJpqvtV=w600"
     },
     {
       nome: "Horta Comunitária Uma Nova Curitiba",
@@ -64,6 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
       lat: -25.4280,
       lng: -49.3606,
       endereco: "Rua Olívia G. Freitas, 471 – Orleans"
+      imagem: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSy2i08SAzI2KnbTqXSqcRvYu_pW3B1QRjVTp4wqsyAxaUrZ6tdytO6tkHfxsbrciErVjW0RGvF6sbOKn71lOSO83S3ZJ-NhU9Sd8ErejjQww08Uqq4y8OIoGaaZNCb7DXl068aRsA=w600"
+
     },
     {
       nome: "Horta Comunitária Dembinski II",
