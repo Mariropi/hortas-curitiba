@@ -10,14 +10,12 @@ body {
   color: #2e2e2e;
 }
 
-/* Header */
 header {
   background: linear-gradient(90deg, #d9f5e5, #e7f7ff);
   padding: 30px 20px;
   text-align: center;
 }
 
-/* Busca */
 .busca {
   display: flex;
   justify-content: center;
@@ -40,14 +38,12 @@ header {
   cursor: pointer;
 }
 
-/* Mapa */
 #map {
   height: 400px;
   margin: 20px;
   border-radius: 16px;
 }
 
-/* Cards */
 #cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -130,7 +126,6 @@ header {
   border-left: 6px solid #2e7d32;
   background: #f0fff4;
 }
-/* MODAL */
 .modal {
   display: none;
   position: fixed;
