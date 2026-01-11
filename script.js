@@ -81,4 +81,4 @@ window.abrirModal = function () {
 window.fecharModal = function () {
   document.getElementById("modalFazenda").style.display = "none";
 };
-  
+}); 
