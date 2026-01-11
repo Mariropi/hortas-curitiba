@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-
   const map = L.map("map").setView([-25.4284, -49.2733], 12);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -38,47 +37,58 @@ document.addEventListener("DOMContentLoaded", function () {
       tipo: "horta"
     }
   ];
-  
+
+ 
   locais.forEach(local => {
     L.marker([local.lat, local.lng])
       .addTo(map)
       .bindPopup(`<strong>${local.nome}</strong><br>${local.endereco}`);
   });
 
+
   const cards = document.getElementById("cards");
 
   locais.forEach(local => {
     const div = document.createElement("div");
-  div.className = local.tipo === "fazenda" ? "card fazenda" : "card";
- div.innerHTML = `
-  <h3>${local.nome}</h3>
-  <p>${local.endereco}</p>
+    div.className = local.tipo === "fazenda" ? "card fazenda" : "card";
 
-  ${local.tipo === "fazenda"
-    ? `<button onclick="abrirModal()">Conhecer a Fazenda</button>`
-    : ""
-  }
+    div.innerHTML = `
+      <h3>${local.nome}</h3>
+      <p>${local.endereco}</p>
 
-  <button onclick="verNoMapa(${local.lat}, ${local.lng})">Ver no mapa</button>
-`;
+      ${local.tipo === "fazenda"
+        ? `<button onclick="abrirModal()">Conhecer a Fazenda</button>`
+        : ""
+      }
 
-  <button onclick="verNoMapa(${local.lat}, ${local.lng})">Ver no mapa</button>
-`;
+      <button onclick="verNoMapa(${local.lat}, ${local.lng})">
+        Ver no mapa
+      </button>
+    `;
+
     cards.appendChild(div);
   });
 
+  /* FUNÇÕES GLOBAIS */
   window.verNoMapa = function (lat, lng) {
     map.setView([lat, lng], 16);
   };
 
   window.buscarEndereco = function () {
-    alert("Busca em desenvolvimento — base funcionando!");
+    alert(
+      "Procure o coordenador da horta mais próxima (associações de moradores),\n" +
+      "ou entre em contato com a Prefeitura pela Central 156 ou\n" +
+      "agriculturaurbana@curitiba.pr.gov.br"
+    );
   };
-window.abrirModal = function () {
-  document.getElementById("modalFazenda").style.display = "block";
-};
 
-window.fecharModal = function () {
-  document.getElementById("modalFazenda").style.display = "none";
-};
+  window.abrirModal = function () {
+    document.getElementById("modalFazenda").style.display = "block";
+  };
+
+  window.fecharModal = function () {
+    document.getElementById("modalFazenda").style.display = "none";
+  };
+
 }); 
+
