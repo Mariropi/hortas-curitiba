@@ -25,7 +25,7 @@ const locais = [
     lat: -25.4900288,
     lng: -49.3539665,
     endereco: "Rua Maria Lúcia Locher Athayde, 7974 – São Miguel",
-    imagem: "https://lh3.googleusercontent.com/p/AG0ilSzjPTTYCXlgtikRsJEsRckENO9M6ZEjW0xFJ5-PPfr4gQHPXlEBKBeYaPgU0QTbylRNqh1jqdXvpllXvv3iYnSD-A8wMeWRtw0TXLNHyogV04NjEBf-8W6gxLKFexEpCBwEopY86g=w600"
+    imagem: "https://lh3.googleusercontent.com/p/AG0ilSzjPTTYCXlgtikRsJEsRckENO9M6ZEjW0xFJ5-PPfr4gQHPXlEBKBeYaPgU0QTbylRNqh1jqdXvpllXvv3iYnSD-A8wMeWRtw0TXLNHyogV04NjEBf-8W6gxLKFexEpCBwEopY86g=w600",
     visita: "Segunda a sexta, 8h–12h e 13h–17h",
     cursos: "Cursos presenciais e EAD pelo Aprendere (SMSAN)",
     contato: "(41) 3267-9128 • WhatsApp (41) 9951-0900"
@@ -36,7 +36,7 @@ const locais = [
     tipo: "fazenda",
     lat: -25.5877,
     lng: -49.3482,
-    endereco: "Rua Olivardo Konoroski Bueno, 177 – Tatuquara"
+    endereco: "Rua Olivardo Konoroski Bueno, 177 – Tatuquara",
     visita: "Segunda a sexta, 8h–12h e 13h–17h",
     cursos: "Cursos presenciais e EAD pelo Aprendere (SMSAN)",
     contato: "(41) 3267-9128 • WhatsApp (41) 9951-0900"
