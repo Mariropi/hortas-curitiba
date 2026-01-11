@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
-  const map = L.map('map').setView([-25.4284, -49.2733], 12);
+  const map = L.map("map").setView([-25.4284, -49.2733], 12);
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap'
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "© OpenStreetMap"
   }).addTo(map);
 
   const locais = [
@@ -36,139 +36,104 @@ document.addEventListener("DOMContentLoaded", function () {
       endereco: "Rua Padre Stanislau Trzebialowski, 252 – Alto Boqueirão"
     },
     {
-      nome: "Horta Comunitária Amigos da Fazendinha",
+      nome: "Horta Comunitária Cristo Rei",
       tipo: "horta",
-      lat: -25.4911,
-      lng: -49.3281,
-      endereco: "R. Afrânio Peixoto, 330 – Fazendinha"
+      lat: -25.4359,
+      lng: -49.2413,
+      endereco: "R. Roberto Cichon, 183 – Cristo Rei"
     },
     {
-      nome: "Horta Comunitária Uma Nova Curitiba",
+      nome: "Horta Maria Angélica",
       tipo: "horta",
-      lat: -25.4280,
-      lng: -49.3606,
-      endereco: "Rua Olívia G. Freitas, 471 – Orleans"
+      lat: -25.5385,
+      lng: -49.2958,
+      endereco: "Rua Monte das Oliveiras, 260 – Pinheirinho"
     }
-    {
-  nome: "Horta Comunitária Cristo Rei",
-  tipo: "horta",
-  lat: -25.4359,
-  lng: -49.2413,
-  endereco: "R. Roberto Cichon, 183 – Cristo Rei",
-  descricao: "Horta comunitária em área urbana, promovendo convivência e segurança alimentar."
-},
-{
-  nome: "Horta Maria Angélica",
-  tipo: "horta",
-  lat: -25.5385,
-  lng: -49.2958,
-  endereco: "Rua Monte das Oliveiras, 260 – Pinheirinho",
-  descricao: "Horta comunitária voltada à educação ambiental e produção local."
-}
   ];
+
+  locais.forEach(local => {
+    L.marker([local.lat, local.lng])
+      .addTo(map)
+      .bindPopup(`<strong>${local.nome}</strong><br>${local.endereco}`);
+  });
 
   const cards = document.getElementById("cards");
 
-  locais.forEach(l => {
-    L.marker([l.lat, l.lng]).addTo(map)
-      .bindPopup(`<b>${l.nome}</b><br>${l.endereco}`);
+  locais.forEach(local => {
+    const div = document.createElement("div");
+    div.className = "card";
 
-    cards.innerHTML += `
-      <div class="card">
-        <h3>${l.nome}</h3>
-        <p><strong>Endereço:</strong> ${l.endereco}</p>
+    div.innerHTML = `
+      <h3>${local.nome}</h3>
+      <p><strong>Endereço:</strong> ${local.endereco}</p>
 
-        ${l.tipo === "fazenda"
-          ? `<button onclick="mostrarInfoFazenda()">Conhecer a Fazenda</button>`
-          : ""
-        }
+      ${local.tipo === "fazenda"
+        ? `<button onclick="abrirModal()">Conhecer a Fazenda</button>`
+        : ""
+      }
 
-        <button onclick="verNoMapa(${l.lat}, ${l.lng})">
-          Ver no mapa
-        </button>
-      </div>
+      <button onclick="verNoMapa(${local.lat}, ${local.lng})">
+        Ver no mapa
+      </button>
     `;
+
+    cards.appendChild(div);
   });
 
-  window.verNoMapa = function (lat, lng) {
+  /* ===== FUNÇÕES GLOBAIS ===== */
+  window.verNoMapa = (lat, lng) => {
     map.setView([lat, lng], 16);
   };
 
-  function distancia(lat1, lon1, lat2, lon2) {
-    const R = 6371;
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLon = (lon2 - lon1) * Math.PI / 180;
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(lat1 * Math.PI / 180) *
-      Math.cos(lat2 * Math.PI / 180) *
-      Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  }
+  window.abrirModal = () => {
+    document.getElementById("modalFazenda").style.display = "block";
+  };
 
-window.buscarEndereco = function () {
-  const endereco = document.getElementById("endereco").value;
+  window.fecharModal = () => {
+    document.getElementById("modalFazenda").style.display = "none";
+  };
 
-  if (!endereco) {
-    alert("Digite seu endereço.");
-    return;
-  }
+  window.buscarEndereco = () => {
+    const endereco = document.getElementById("endereco").value;
 
-  fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${endereco}, Curitiba, PR, Brasil`)
-    .then(res => res.json())
-    .then(data => {
-      if (!data.length || !data[0].display_name.includes("Curitiba")) {
-        alert(
-`Endereço não localizado em Curitiba.
+    if (!endereco) {
+      alert("Digite seu endereço.");
+      return;
+    }
 
-Procure o coordenador da horta mais próxima ou entre em contato com:
-☎️ Central 156
-✉️ agriculturaurbana@curitiba.pr.gov.br`
-        );
-        return;
-      }
-
-      const origemLat = parseFloat(data[0].lat);
-      const origemLng = parseFloat(data[0].lon);
-
-      let maisProxima = locais[0];
-      let menorDistancia = Infinity;
-
-      locais.forEach(l => {
-        const d = distancia(origemLat, origemLng, l.lat, l.lng);
-        if (d < menorDistancia) {
-          menorDistancia = d;
-          maisProxima = l;
+    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${endereco}, Curitiba, PR`)
+      .then(res => res.json())
+      .then(data => {
+        if (!data.length) {
+          alert(
+            "Endereço não encontrado em Curitiba.\n\nEntre em contato com a Central 156 ou agriculturaurbana@curitiba.pr.gov.br"
+          );
+          return;
         }
+
+        const origemLat = parseFloat(data[0].lat);
+        const origemLng = parseFloat(data[0].lon);
+
+        let maisProxima = locais[0];
+        let menor = Infinity;
+
+        locais.forEach(l => {
+          const d = Math.sqrt(
+            Math.pow(l.lat - origemLat, 2) +
+            Math.pow(l.lng - origemLng, 2)
+          );
+
+          if (d < menor) {
+            menor = d;
+            maisProxima = l;
+          }
+        });
+
+        window.open(
+          `https://www.google.com/maps/dir/?api=1&origin=${origemLat},${origemLng}&destination=${maisProxima.lat},${maisProxima.lng}`,
+          "_blank"
+        );
       });
-
-      window.open(
-        `https://www.google.com/maps/dir/?api=1&origin=${origemLat},${origemLng}&destination=${maisProxima.lat},${maisProxima.lng}`,
-        "_blank"
-      );
-    });
-};
-
-
-  window.mostrarInfoFazenda = function () {
-    alert(
-`Quem pode visitar?
-Qualquer cidadão (menores acompanhados).
-
-Visitas:
-Segunda a sexta, 8h–12h e 13h–17h.
-Visitas guiadas: Guia Curitiba (buscar "Fazenda Urbana").
-
-Cursos:
-Presenciais mensais e EAD pelo Aprendere (SMSAN).
-
-Serviço gratuito.
-
-Dúvidas:
-(41) 3267-9128
-WhatsApp: (41) 9951-0900
-fazendaurbana@curitiba.pr.gov.br`
-    );
   };
 
 });
