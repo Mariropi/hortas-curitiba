@@ -290,3 +290,33 @@ header {
 .contato-info a:hover {
   text-decoration: underline;
 }
+.contato-fixo {
+  max-width: 700px;
+  margin: 30px auto 80px auto;
+  padding: 28px 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.contato-fixo h3 {
+  color: #2e7d32;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+}
+
+.contato-fixo p {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.contato-fixo a {
+  color: #2e7d32;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.contato-fixo a:hover {
+  text-decoration: underline;
+}
