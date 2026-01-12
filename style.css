@@ -206,3 +206,27 @@ header {
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
   text-align: center;
 }
+.info-fixa {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.info-fixa h3 {
+  color: #2e7d32;
+  margin-bottom: 12px;
+}
+
+.info-fixa a {
+  color: #2e7d32;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.info-fixa a:hover {
+  text-decoration: underline;
+}
