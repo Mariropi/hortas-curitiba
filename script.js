@@ -134,6 +134,18 @@ const locais = [
           document.getElementById("naoEncontrou").style.display = "flex";
           return;
         }
+window.abrirModal = function (index) {
+  const fazenda = locais[index];
+
+  document.getElementById("modalTitulo").innerText = fazenda.nome;
+  document.getElementById("modalDescricao").innerHTML = fazenda.descricao;
+
+  document.getElementById("modalFazenda").style.display = "block";
+};
+
+window.fecharModal = function () {
+  document.getElementById("modalFazenda").style.display = "none";
+};
 
         const lat = parseFloat(data[0].lat);
         const lng = parseFloat(data[0].lon);
