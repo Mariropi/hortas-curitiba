@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-
+  
   const map = L.map("map").setView([-25.4284, -49.2733], 12);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -15,12 +15,30 @@ document.addEventListener("DOMContentLoaded", function () {
       endereco: "Av. Prefeito Maurício Fruet, 1880 – Cajuru",
       imagem: "https://www.bemparana.com.br/wp-content/uploads/2023/07/fazenda-urbana-cajuru.jpg",
       descricao: `
-        <strong>FAZENDA URBANA CAJURU</strong><br><br>
-        Dedicada à educação para a agricultura urbana, sendo um espaço pioneiro no Brasil.
-        Atua como centro de referência, com visitas e cursos.
-        Possui hortas modelo, estufas, composteiras, sala multiuso e escola de gastronomia social.
+        <p><strong>FAZENDA URBANA CAJURU</strong></p>
+        <p>
+          Dedicada à educação para a agricultura urbana, sendo um espaço pioneiro no Brasil.
+          Atua como centro de referência, com visitas e cursos. Possui hortas modelo,
+          estufas, composteiras, sala multiuso e escola de gastronomia social.
+        </p>
+        <hr>
+        <p><strong>Quem pode visitar?</strong><br>
+        Qualquer cidadão (menores acompanhados) e PcD.</p>
+
+        <p><strong>Visitas:</strong><br>
+        Segunda a sexta, das 8h às 12h e das 13h às 17h.<br>
+        Visitas guiadas via Guia Curitiba.</p>
+
+        <p><strong>Cursos:</strong><br>
+        Presenciais mensais e cursos EAD pelo Aprendere (SMSAN).</p>
+
+        <p><strong>Contato:</strong><br>
+        ☎️ (41) 3267-9128<br>
+        📱 <a href="https://wa.me/554199510900" target="_blank">WhatsApp</a><br>
+        ✉️ fazendaurbana@curitiba.pr.gov.br</p>
       `
     },
+
     {
       nome: "Fazenda Urbana CIC",
       tipo: "fazenda",
@@ -28,12 +46,30 @@ document.addEventListener("DOMContentLoaded", function () {
       lng: -49.3539,
       endereco: "Rua Maria Lúcia Locher Athayde, 7974 – São Miguel",
       descricao: `
-        <strong>FAZENDA URBANA CIC</strong><br><br>
-        Operando desde outubro de 2025, possui proposta semelhante à Fazenda Cajuru,
-        com maior integração ao ecossistema alimentar da Região Metropolitana.
-        Atua em capacitações e testagem de técnicas e tecnologias.
+        <p><strong>FAZENDA URBANA CIC</strong></p>
+        <p>
+          Operando desde outubro de 2025, possui proposta semelhante à Fazenda Urbana Cajuru,
+          com maior integração ao ecossistema de produção de alimentos da Região Metropolitana
+          de Curitiba. Atua em capacitações, testes de técnicas e tecnologias.
+        </p>
+        <hr>
+        <p><strong>Quem pode visitar?</strong><br>
+        Qualquer cidadão (menores acompanhados) e PcD.</p>
+
+        <p><strong>Visitas:</strong><br>
+        Segunda a sexta, das 8h às 12h e das 13h às 17h.<br>
+        Visitas guiadas via Guia Curitiba.</p>
+
+        <p><strong>Cursos:</strong><br>
+        Presenciais mensais e cursos EAD pelo Aprendere (SMSAN).</p>
+
+        <p><strong>Contato:</strong><br>
+        ☎️ (41) 3267-9128<br>
+        📱 <a href="https://wa.me/554199510900" target="_blank">WhatsApp</a><br>
+        ✉️ fazendaurbana@curitiba.pr.gov.br</p>
       `
     },
+
     {
       nome: "Fazenda Urbana Tatuquara",
       tipo: "fazenda",
@@ -41,10 +77,26 @@ document.addEventListener("DOMContentLoaded", function () {
       lng: -49.3482,
       endereco: "Rua Olivardo Konoroski Bueno, 177 – Tatuquara",
       descricao: `
-        <strong>FAZENDA URBANA TATUQUARA</strong><br><br>
-        Praça viva de convivência e bem-estar.
-        Espaço aberto que valoriza produção de alimentos,
-        empreendedorismo e geração de renda local.
+        <p><strong>FAZENDA URBANA TATUQUARA</strong></p>
+        <p>
+          Praça viva de convivência e bem-estar, onde paisagismo e cultivo se unem.
+          Espaço aberto que valoriza a produção de alimentos, o empreendedorismo
+          e a geração de renda local.
+        </p>
+        <hr>
+        <p><strong>Quem pode visitar?</strong><br>
+        Qualquer cidadão (menores acompanhados) e PcD.</p>
+
+        <p><strong>Visitas:</strong><br>
+        Segunda a sexta, das 8h às 12h e das 13h às 17h.</p>
+
+        <p><strong>Cursos:</strong><br>
+        Presenciais e EAD pelo Aprendere (SMSAN).</p>
+
+        <p><strong>Contato:</strong><br>
+        ☎️ (41) 3267-9128<br>
+        📱 <a href="https://wa.me/554199510900" target="_blank">WhatsApp</a><br>
+        ✉️ fazendaurbana@curitiba.pr.gov.br</p>
       `
     },
 
@@ -60,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
       tipo: "horta",
       lat: -25.4359,
       lng: -49.2413,
-      endereco: "Rua Roberto Cichon, 183 – Cristo Rei"
+      endereco: "R. Roberto Cichon, 183 – Cristo Rei"
     },
     {
       nome: "Horta Maria Angélica",
@@ -74,14 +126,14 @@ document.addEventListener("DOMContentLoaded", function () {
       tipo: "horta",
       lat: -25.4914,
       lng: -49.3283,
-      endereco: "Rua Afrânio Peixoto, 330 – Fazendinha"
+      endereco: "R. Afrânio Peixoto, 330 – Fazendinha"
     },
     {
       nome: "Horta Comunitária Dembinski II",
       tipo: "horta",
       lat: -25.5006,
       lng: -49.3554,
-      endereco: "Rua Rio do Sul – CIC"
+      endereco: "R. Rio do Sul – CIC"
     },
     {
       nome: "Horta Comunitária do Jacu",
@@ -92,24 +144,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   ];
 
-  locais.forEach(local => {
-    L.marker([local.lat, local.lng])
-      .addTo(map)
-      .bindPopup(`<strong>${local.nome}</strong><br>${local.endereco}`);
-  });
-
   const cards = document.getElementById("cards");
-  cards.innerHTML = "";
 
   locais.forEach((local, index) => {
+    L.marker([local.lat, local.lng]).addTo(map);
+
     const card = document.createElement("div");
-    card.className = "card";
+    card.className = local.tipo === "fazenda" ? "card fazenda" : "card";
 
     card.innerHTML = `
-      ${local.imagem
-        ? `<img src="${local.imagem}" onerror="this.outerHTML='<div class=img-placeholder>🌱</div>'">`
-        : `<div class="img-placeholder">🌱</div>`
-      }
       <h3>${local.nome}</h3>
       <p>${local.endereco}</p>
 
@@ -125,10 +168,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   window.abrirModal = function (index) {
-    const fazenda = locais[index];
-    document.getElementById("modalTitulo").innerText = fazenda.nome;
-    document.getElementById("modalDescricao").innerHTML = fazenda.descricao;
-    document.getElementById("modalFazenda").style.display = "block";
+    document.getElementById("modalTitulo").innerText = locais[index].nome;
+    document.getElementById("modalDescricao").innerHTML = locais[index].descricao;
+    document.getElementById("modalFazenda").style.display = "flex";
   };
 
   window.fecharModal = function () {
@@ -141,54 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   window.buscarEndereco = function () {
-    const endereco = document.getElementById("endereco").value;
-    const naoEncontrou = document.getElementById("naoEncontrou");
-
-    naoEncontrou.style.display = "none";
-
-    if (!endereco) {
-      alert("Digite um endereço.");
-      return;
-    }
-
-    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${endereco}, Curitiba, PR`)
-      .then(r => r.json())
-      .then(data => {
-        if (!data.length) {
-          naoEncontrou.style.display = "flex";
-          return;
-        }
-
-        const lat = parseFloat(data[0].lat);
-        const lng = parseFloat(data[0].lon);
-
-        let maisProxima = null;
-        let menorDistancia = Infinity;
-
-        locais.forEach(local => {
-          const d = Math.sqrt(
-            Math.pow(local.lat - lat, 2) +
-            Math.pow(local.lng - lng, 2)
-          );
-          if (d < menorDistancia) {
-            menorDistancia = d;
-            maisProxima = local;
-          }
-        });
-
-        // Aproximadamente 10 km
-        if (menorDistancia > 0.1) {
-          naoEncontrou.style.display = "flex";
-          return;
-        }
-
-        map.setView([maisProxima.lat, maisProxima.lng], 16);
-        document.getElementById("map").scrollIntoView({ behavior: "smooth" });
-      })
-      .catch(() => {
-        naoEncontrou.style.display = "flex";
-      });
+    document.getElementById("naoEncontrou").style.display = "flex";
   };
 
 });
-
