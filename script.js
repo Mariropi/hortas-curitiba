@@ -48,7 +48,6 @@ const locais = [
     `
   },
 
-  /* HORTAS */
   {
     nome: "Horta Projeto Oásis",
     tipo: "horta",
@@ -141,24 +140,32 @@ const locais = [
 
         let achou = false;
 
-        locais.forEach(local => {
-          const distanciaKm =
-            Math.sqrt(
-              Math.pow(local.lat - lat, 2) +
-              Math.pow(local.lng - lng, 2)
-            ) * 111;
+     locais.forEach((local, index) => {
+  const card = document.createElement("div");
+  card.className = "card";
 
-          if (distanciaKm <= 10 && !achou) {
-            achou = true;
-            map.setView([local.lat, local.lng], 16);
-            document.getElementById("map").scrollIntoView({ behavior: "smooth" });
-          }
-        });
+  card.innerHTML = `
+    ${local.imagem
+      ? `<img src="${local.imagem}" onerror="this.style.display='none'">`
+      : `<div class="img-placeholder">🌱</div>`
+    }
 
-        if (!achou) {
+    <h3>${local.nome}</h3>
+    <p>${local.endereco}</p>
+
+    ${local.tipo === "fazenda"
+      ? `<button onclick="abrirModal(${index})">Conhecer a Fazenda</button>`
+      : ""
+    }
+
+    <button onclick="verNoMapa(${local.lat}, ${local.lng})">Ver no mapa</button>
+  `;
+
+  cards.appendChild(card);
+});
+
+      if (!achou) {
           document.getElementById("naoEncontrou").style.display = "flex";
         }
       });
-  };
-
-});
+ 
