@@ -12,75 +12,81 @@
 
 <body>
 
-<section class="curiosidades">
-  <h2>Dados que colocam Curitiba em destaque 🌱</h2>
-  <ul>
-    <li><strong>216</strong> hortas urbanas ativas</li>
-    <li><strong>1,6 mil toneladas</strong> de frutas e verduras por ano</li>
-    <li><strong>32 mil pessoas</strong> beneficiadas diretamente</li>
-    <li><strong>130</strong> colmeias de abelhas sem ferrão</li>
-    <li><strong>3</strong> Fazendas Urbanas Municipais</li>
-  </ul>
-</section>
+  <section class="curiosidades">
+    <h2>Dados que colocam Curitiba em destaque 🌱</h2>
+    <ul>
+      <li><strong>216</strong> hortas urbanas ativas</li>
+      <li><strong>1,6 mil toneladas</strong> de frutas e verduras por ano</li>
+      <li><strong>32 mil pessoas</strong> beneficiadas diretamente</li>
+      <li><strong>130 colmeias</strong> de abelhas sem ferrão</li>
+      <li><strong>3 Fazendas Urbanas Municipais</strong> em funcionamento</li>
+    </ul>
+  </section>
 
-<header>
-  <h1>🌱 Hortas Urbanas de Curitiba</h1>
-  <p>Mapa interativo das hortas e fazendas urbanas</p>
-</header>
+  <header class="topo">
+    <h1>🌱 Hortas Urbanas de Curitiba</h1>
+    <p>Mapa interativo das hortas e fazendas urbanas</p>
+  </header>
+  
+  <section class="busca">
+    <input type="text" id="endereco" placeholder="Digite seu endereço ou bairro">
+    <button onclick="buscarEndereco()">Buscar horta mais próxima</button>
+  </section>
 
-<section class="busca">
-  <input type="text" id="endereco" placeholder="Digite seu endereço ou bairro">
-  <button onclick="buscarEndereco()">Buscar horta mais próxima</button>
-</section>
+  <div id="map"></div>
+  
+  <section id="cards" class="cards"></section>
 
-<div id="map"></div>
-
-<section id="cards"></section>
-
-<section id="naoEncontrou" class="cta-container" style="display:none;">
-  <div class="cta-box">
-    <h3>🌱 Não encontrou uma horta?</h3>
-    <p>
-      Para obter a localização exata das hortas mais próximas ao seu endereço ou bairro,
-      e saber quais são geridas por associações de moradores, o canal mais eficiente é a
-      <strong>Central 156</strong> (telefone ou chat online).
-    </p>
+  <div class="cta-container">
+    <div class="cta-box">
+      <h3>🌱 Quer criar uma horta comunitária?</h3>
+      <p>
+        Saiba como participar do programa de hortas urbanas de Curitiba
+        e transformar seu bairro.
+      </p>
+      <a
+        href="https://www.curitiba.pr.gov.br/servicos/hortas-comunitarias-urbanas-curitiba/107"
+        target="_blank"
+        class="cta-button"
+      >
+        Clique aqui e saiba mais
+      </a>
+    </div>
   </div>
-</section>
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="script.js"></script>
   <div id="modalFazenda" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="fecharModal()">×</span>
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal()">×</span>
 
-    <h2 id="modalTitulo"></h2>
-    <div id="modalDescricao"></div>
+      <h2 id="modalTitulo"></h2>
+      <div id="modalDescricao"></div>
 
-    <hr>
+      <hr>
 
-    <p><strong>Quem pode visitar/participar?</strong><br>
-      Qualquer cidadão (menores acompanhados) e PcD.
-    </p>
+      <p><strong>Quem pode visitar?</strong><br>
+        Qualquer cidadão (menores acompanhados) e PcD.
+      </p>
 
-    <p><strong>Visitas:</strong><br>
-      Segunda a sexta, das 8h às 12h e das 13h às 17h.<br>
-      Visitas guiadas via Guia Curitiba.
-    </p>
+      <p><strong>Visitas:</strong><br>
+        Segunda a sexta, das 8h às 12h e das 13h às 17h.<br>
+        Visitas guiadas via Guia Curitiba.
+      </p>
 
-    <p><strong>Cursos:</strong><br>
-      Presenciais mensais e EAD pelo Aprendere (SMSAN).
-    </p>
+      <p><strong>Cursos:</strong><br>
+        Presenciais mensais e cursos EAD pelo Aprendere (SMSAN).
+      </p>
 
-    <p><strong>Contato:</strong><br>
-      ☎️ (41) 3267-9128<br>
-      📱 <a href="https://wa.me/554199510900" target="_blank">WhatsApp</a><br>
-      ✉️ fazendaurbana@curitiba.pr.gov.br
-    </p>
+      <p><strong>Contato:</strong><br>
+        ☎️ (41) 3267-9128<br>
+        📱 <a href="https://wa.me/554199510900" target="_blank">WhatsApp</a><br>
+        ✉️ fazendaurbana@curitiba.pr.gov.br
+      </p>
 
-    <button class="modal-btn" onclick="fecharModal()">Fechar</button>
+      <button class="modal-btn" onclick="fecharModal()">Fechar</button>
+    </div>
   </div>
-</div>
 
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
