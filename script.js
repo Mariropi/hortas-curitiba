@@ -174,7 +174,7 @@ window.fecharModal = function () {
   `;
 
   cards.appendChild(card);
-});
+};
 
       if (!achou) {
           document.getElementById("naoEncontrou").style.display = "flex";
