@@ -13,28 +13,22 @@ document.addEventListener("DOMContentLoaded", function () {
       lat: -25.4422,
       lng: -49.2316,
       endereco: "Av. Prefeito Maurício Fruet, 1880 – Cajuru",
-      imagem: "https://www.bemparana.com.br/wp-content/uploads/2023/07/fazenda-urbana-cajuru.jpg",
-      descricao: "Dedicada à educação para a agricultura urbana, sendo um espaço pioneiro no Brasil. Atua como centro de referência, com visitas, cursos, estufas, composteiras e escola de gastronomia social."
+      imagem: "https://www.bemparana.com.br/wp-content/uploads/2023/07/fazenda-urbana-cajuru.jpg"
     },
     {
       nome: "Fazenda Urbana CIC",
       tipo: "fazenda",
       lat: -25.4900,
       lng: -49.3539,
-      endereco: "Rua Maria Lúcia Locher Athayde, 7974 – São Miguel",
-      imagem: "https://lh3.googleusercontent.com/p/AG0ilSzjPTTYCXlgtikRsJEsRckENO9M6ZEjW0xFJ5-PPfr4gQHPXlEBKBeYaPgU0QTbylRNqh1jqdXvpllXvv3iYnSD-A8wMeWRtw0TXLNHyogV04NjEBf-8W6gxLKFexEpCBwEopY86g=w600",
-      descricao: "Capacitação em ecossistema alimentar e testagem de técnicas agrícolas, com forte integração à Região Metropolitana de Curitiba."
+      endereco: "Rua Maria Lúcia Locher Athayde, 7974 – São Miguel"
     },
     {
       nome: "Fazenda Urbana Tatuquara",
       tipo: "fazenda",
       lat: -25.5877,
       lng: -49.3482,
-      endereco: "Rua Olivardo Konoroski Bueno, 177 – Tatuquara",
-      imagem: "",
-      descricao: "Praça viva de convivência e bem-estar, integrando paisagismo, cultivo, empreendedorismo e geração de renda local."
+      endereco: "Rua Olivardo Konoroski Bueno, 177 – Tatuquara"
     },
-
     {
       nome: "Horta Projeto Oásis",
       tipo: "horta",
@@ -68,40 +62,38 @@ document.addEventListener("DOMContentLoaded", function () {
       tipo: "horta",
       lat: -25.5006,
       lng: -49.3554,
-      endereco: "R. Rio do Sul, em frente ao nº 2290 – CIC"
+      endereco: "R. Rio do Sul – CIC"
+    },
+    {
+      nome: "Horta Comunitária do Jacu",
+      tipo: "horta",
+      lat: -25.4079,
+      lng: -49.2708,
+      endereco: "Rua Ângelo Zeni – Bom Retiro"
     }
   ];
+
+  const cards = document.getElementById("cards");
 
   locais.forEach(local => {
     L.marker([local.lat, local.lng])
       .addTo(map)
       .bindPopup(`<strong>${local.nome}</strong><br>${local.endereco}`);
-  });
 
-  const cards = document.getElementById("cards");
+    const card = document.createElement("div");
+    card.className = "card";
 
-  locais.forEach((local, index) => {
-    const div = document.createElement("div");
-    div.className = "card";
-
-    const imagemHTML = local.imagem
-      ? `<img src="${local.imagem}" onerror="this.outerHTML='<div class=img-placeholder>🌱</div>'">`
-      : `<div class="img-placeholder">🌱</div>`;
-
-    div.innerHTML = `
-      ${imagemHTML}
+    card.innerHTML = `
+      ${local.imagem
+        ? `<img src="${local.imagem}" onerror="this.outerHTML='<div class=img-placeholder>🌱</div>'">`
+        : `<div class="img-placeholder">🌱</div>`
+      }
       <h3>${local.nome}</h3>
       <p>${local.endereco}</p>
-
-      ${local.tipo === "fazenda"
-        ? `<button onclick="abrirModal(${index})">Conhecer a Fazenda</button>`
-        : ""
-      }
-
       <button onclick="verNoMapa(${local.lat}, ${local.lng})">Ver no mapa</button>
     `;
 
-    cards.appendChild(div);
+    cards.appendChild(card);
   });
 
   window.verNoMapa = function (lat, lng) {
@@ -109,55 +101,43 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("map").scrollIntoView({ behavior: "smooth" });
   };
 
-  window.abrirModal = function (index) {
-    const f = locais[index];
-    document.getElementById("modalTitulo").innerText = f.nome;
-    document.getElementById("modalDescricao").innerText = f.descricao || "";
-    document.getElementById("modalFazenda").style.display = "block";
-  };
-
-  window.fecharModal = function () {
-    document.getElementById("modalFazenda").style.display = "none";
-  };
-
   window.buscarEndereco = function () {
     const endereco = document.getElementById("endereco").value;
+    document.getElementById("naoEncontrou").style.display = "none";
+
     if (!endereco) return alert("Digite um endereço.");
 
     fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${endereco}, Curitiba, PR`)
       .then(r => r.json())
       .then(data => {
         if (!data.length) {
-          mostrarNaoEncontrou();
+          document.getElementById("naoEncontrou").style.display = "flex";
           return;
         }
 
         const lat = parseFloat(data[0].lat);
         const lng = parseFloat(data[0].lon);
 
-        let encontrado = false;
+        let achou = false;
 
         locais.forEach(local => {
-          const d = Math.sqrt(
-            Math.pow(local.lat - lat, 2) +
-            Math.pow(local.lng - lng, 2)
-          ) * 111; // km aproximado
+          const distanciaKm =
+            Math.sqrt(
+              Math.pow(local.lat - lat, 2) +
+              Math.pow(local.lng - lng, 2)
+            ) * 111;
 
-          if (d <= 10) {
-            encontrado = true;
-            window.open(
-              `https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${local.lat},${local.lng}`,
-              "_blank"
-            );
+          if (distanciaKm <= 10 && !achou) {
+            achou = true;
+            map.setView([local.lat, local.lng], 16);
+            document.getElementById("map").scrollIntoView({ behavior: "smooth" });
           }
         });
 
-        if (!encontrado) mostrarNaoEncontrou();
+        if (!achou) {
+          document.getElementById("naoEncontrou").style.display = "flex";
+        }
       });
   };
-
-  function mostrarNaoEncontrou() {
-    document.getElementById("naoEncontrou").style.display = "flex";
-  }
 
 });
