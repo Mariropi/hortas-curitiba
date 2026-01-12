@@ -19,7 +19,7 @@
     <li><strong>1,6 mil toneladas</strong> de frutas e verduras por ano</li>
     <li><strong>32 mil pessoas</strong> beneficiadas diretamente</li>
     <li><strong>130 colmeias</strong> de abelhas sem ferrão</li>
-    <li><strong>3 Fazendas Urbanas Municipais</strong> em funcionamento</li>
+    <li><strong>3 Fazendas Urbanas Municipais</strong></li>
   </ul>
 </section>
 
@@ -29,58 +29,46 @@
 </header>
 
 <section class="busca">
-  <input id="endereco" placeholder="Digite seu endereço ou bairro">
-  <button onclick="buscarEndereco()">Buscar horta mais próxima</button>
+  <input type="text" id="endereco" placeholder="Digite seu endereço ou bairro">
+  <button onclick="buscarEndereco()">Buscar</button>
 </section>
 
 <div id="map"></div>
 
-<section id="cards" class="cards"></section>
+<section id="cards"></section>
 
 <div id="naoEncontrou" class="nao-encontrou">
-  <div>
-    <h3>Não encontrou uma horta?</h3>
-    <p>
-      Para obter a localização exata das hortas mais próximas ao seu endereço ou bairro,
-      procure a <strong>Central 156</strong> (telefone ou chat online).
-    </p>
-  </div>
+  <h3>❓ Não encontrou uma horta?</h3>
+  <p>
+    Para saber a localização exata das hortas mais próximas ao seu bairro,
+    procure a <strong>Central 156</strong> (telefone ou chat online).
+  </p>
 </div>
 
 <div class="cta-container">
   <div class="cta-box">
     <h3>🌱 Quer criar uma horta comunitária?</h3>
-    <p>Saiba como participar do programa de hortas urbanas de Curitiba.</p>
+    <p>
+      A Prefeitura oferece apoio por meio das Fazendas Urbanas,
+      com cursos e orientação para mais de 200 hortas.
+    </p>
     <a href="https://www.curitiba.pr.gov.br/servicos/hortas-comunitarias-urbanas-curitiba/107"
-       target="_blank" class="cta-button">Clique aqui e saiba mais</a>
+       target="_blank" class="cta-button">
+      Clique aqui e saiba mais
+    </a>
   </div>
 </div>
 
-<!-- CARD FIXO DE INFORMAÇÕES -->
-<div class="info-fixa">
-  <h3>ℹ️ Informações</h3>
-  <p>
-    Procure o coordenador da horta mais próxima ou entre em contato com a Prefeitura via
-    <strong>Central 156</strong> (telefone, chat ou WhatsApp
-    <a href="https://wa.me/554198762903" target="_blank">(41) 9876-2903</a>).
-    O município gerencia o programa e utiliza a Fazenda Urbana como centro de apoio,
-    oferecendo cursos e direcionando interessados para mais de
-    <strong>200 hortas comunitárias</strong>.
-  </p>
-</div>
-  
 <div id="modalFazenda" class="modal">
   <div class="modal-content">
     <span class="close" onclick="fecharModal()">×</span>
-
     <h2 id="modalTitulo"></h2>
-
     <div id="modalDescricao"></div>
-
     <button class="modal-btn" onclick="fecharModal()">Fechar</button>
   </div>
 </div>
 
-
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
