@@ -12,128 +12,95 @@
 
 <body>
 
-<section class="curiosidades">
-  <h2>🌱 Dados que colocam Curitiba em destaque</h2>
-  <ul>
-    <li><strong>216</strong> hortas urbanas ativas</li>
-    <li><strong>1,6 mil toneladas</strong> de frutas e verduras por ano</li>
-    <li><strong>32 mil pessoas</strong> beneficiadas diretamente</li>
-    <li><strong>130 colmeias</strong> de abelhas sem ferrão</li>
-    <li><strong>3 Fazendas Urbanas Municipais</strong> em funcionamento</li>
-  </ul>
-</section>
+  <section class="curiosidades">
+    <h2>🌱 Dados que colocam Curitiba em destaque</h2>
+    <ul>
+      <li>216 hortas urbanas ativas</li>
+      <li>1,6 mil toneladas de frutas e verduras por ano</li>
+      <li>32 mil pessoas beneficiadas diretamente</li>
+      <li>130 colmeias de abelhas sem ferrão</li>
+      <li>3 Fazendas Urbanas Municipais em funcionamento</li>
+    </ul>
+  </section>
 
-<header>
-  <h1>🌱 Hortas Urbanas de Curitiba</h1>
-  <p>Mapa interativo das hortas e fazendas urbanas</p>
-</header>
+  <header class="topo">
+    <h1>🌱 Hortas Urbanas de Curitiba</h1>
+    <p>Mapa interativo das hortas e fazendas urbanas</p>
+  </header>
 
-<section class="busca">
-  <input type="text" id="endereco" placeholder="Digite seu endereço ou bairro">
-  <button onclick="buscarEndereco()">Buscar horta mais próxima</button>
-</section>
+  <section class="busca">
+    <input type="text" id="endereco" placeholder="Digite seu endereço ou bairro">
+    <button onclick="buscarEndereco()">Buscar horta mais próxima</button>
+  </section>
 
-<div id="map"></div>
+  <div id="map"></div>
 
-<section id="cards"></section>
+  <section id="cards"></section>
 
-<div id="naoEncontrou" class="nao-encontrou" style="display:none;">
-  <h3>Não encontrou uma horta?</h3>
-  <p>
-    A Prefeitura oferece um guia de serviços para Hortas Comunitárias Urbanas.
-    <br><br>
-    <strong>Central 156</strong> (telefone ou chat online)<br>
-    ✉️ <a href="mailto:agriculturaurbana@curitiba.pr.gov.br">agriculturaurbana@curitiba.pr.gov.br</a>
-  </p>
-</div>
-
-<div class="cta-container">
-  <div class="cta-box">
-    <h3>🌱 Quer criar uma horta comunitária?</h3>
+  <section id="naoEncontrou" class="info-box" style="display:none;">
+    <h3>❓ Não encontrou uma horta?</h3>
     <p>
-      A Prefeitura oferece apoio por meio das Fazendas Urbanas,
-      com cursos e orientação para mais de 200 hortas em funcionamento.
-    </p>
-    <a
-      href="https://www.curitiba.pr.gov.br/servicos/hortas-comunitarias-urbanas-curitiba/107"
-      target="_blank"
-      class="cta-button"
-    >
-      Clique aqui e saiba mais
-    </a>
-  </div>
-<div class="rodape-infos">
-
-  <div class="info-box">
-    <h3>ℹ️ Informações</h3>
-    <p>
-      A Prefeitura oferece um guia de serviços para Hortas Comunitárias Urbanas.
+      Para obter a localização exata das hortas mais próximas ao seu endereço ou bairro,
+      e saber quais são geridas por associações de moradores, o canal mais eficiente é a
+      <strong>Central 156</strong>.
     </p>
 
     <p>
-      <strong>Central 156</strong> – telefone ou chat online<br>
+      📞 <strong>Central 156</strong> – telefone ou chat online<br>
       📱 WhatsApp:
       <a href="https://wa.me/554198762903" target="_blank">(41) 9876-2903</a><br>
-      ✉️
+      ✉️ E-mail:
       <a href="mailto:agriculturaurbana@curitiba.pr.gov.br">
         agriculturaurbana@curitiba.pr.gov.br
       </a>
     </p>
-  </div>
+  </section>
 
-  <div class="nao-encontrou">
-    <h3>❓ Não encontrou uma horta?</h3>
+  <section class="cta-container">
+    <div class="cta-box">
+      <h3>🌱 Quer criar uma horta comunitária?</h3>
+      <p>
+        A Prefeitura oferece apoio por meio das Fazendas Urbanas,
+        com cursos e orientação para mais de 200 hortas em funcionamento.
+      </p>
+      <a
+        href="https://www.curitiba.pr.gov.br/servicos/hortas-comunitarias-urbanas-curitiba/107"
+        target="_blank"
+        class="cta-button"
+      >
+        Clique aqui e saiba mais
+      </a>
+    </div>
+  </section>
+
+  <section class="info-box">
+    <h3>ℹ️ Informações</h3>
     <p>
-      Para obter a localização exata das hortas mais próximas ao seu endereço ou bairro,
-      e saber quais delas são geridas por associações de moradores,
-      o canal mais eficiente é a <strong>Central 156</strong>.
-    </p>
-  </div>
-
-</div>
-
-<div class="info-fixa">
-  <h3>ℹ️ Informações</h3>
-  <p>
-    A Prefeitura oferece um guia de serviços para Hortas Comunitárias Urbanas.<br><br>
-    <strong>Central 156</strong> – telefone ou chat online<br>
-    📱 WhatsApp: (41) 9876-2903<br>
-    ✉️ <a href="mailto:agriculturaurbana@curitiba.pr.gov.br">
-    agriculturaurbana@curitiba.pr.gov.br</a>
-  </p>
-</div>
-
-<div id="modalFazenda" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="fecharModal()">×</span>
-    <h2 id="modalTitulo"></h2>
-    <div id="modalDescricao"></div>
-    <button class="modal-btn" onclick="fecharModal()">Fechar</button>
-  </div>
-</div>
-
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="script.js"></script>
-<div id="naoEncontrou" class="overlay-nao-encontrou">
-  <div class="overlay-card">
-    <h3>Não encontrou uma horta?</h3>
-
-    <p>
-      Para obter a localização exata das hortas mais próximas ao seu endereço ou bairro,
-      e saber quais delas são geridas por associações de moradores, o canal mais eficiente
-      é a <strong>Central 156</strong>.
+      A Prefeitura oferece um guia de serviços para Hortas Comunitárias Urbanas
+      em seu portal oficial.
     </p>
 
     <p>
-      📞 Telefone ou chat online<br>
-      📱 WhatsApp: <a href="https://wa.me/554198762903" target="_blank">(41) 9876-2903</a><br>
-      ✉️ <a href="mailto:agriculturaurbana@curitiba.pr.gov.br">
-      agriculturaurbana@curitiba.pr.gov.br</a>
+      📞 Central 156 – telefone ou chat online<br>
+      📱 WhatsApp:
+      <a href="https://wa.me/554198762903" target="_blank">(41) 9876-2903</a><br>
+      ✉️ E-mail:
+      <a href="mailto:agriculturaurbana@curitiba.pr.gov.br">
+        agriculturaurbana@curitiba.pr.gov.br
+      </a>
     </p>
+  </section>
 
-    <button onclick="fecharNaoEncontrou()">Fechar</button>
+  <div id="modalFazenda" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal()">×</span>
+      <h2 id="modalTitulo"></h2>
+      <div id="modalDescricao"></div>
+      <button class="modal-btn" onclick="fecharModal()">Fechar</button>
+    </div>
   </div>
-</div>
-  
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
