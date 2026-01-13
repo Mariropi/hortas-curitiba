@@ -230,8 +230,24 @@ header p {
   header h1 {
     font-size: 1.6rem;
   }
-
+}
   #map {
     height: 300px;
   }
+
+#map,
+.leaflet-container,
+.leaflet-pane {
+  z-index: 1 !important;
+}
+
+/* Modal sempre acima de tudo */
+.modal {
+  z-index: 10000 !important;
+}
+
+/* Quando o modal estiver aberto, desativa interação com o mapa */
+body.modal-aberto #map,
+body.modal-aberto .leaflet-container {
+  pointer-events: none;
 }
