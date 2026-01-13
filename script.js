@@ -72,41 +72,58 @@ document.addEventListener("DOMContentLoaded", () => {
     { nome: "Horta Comunitária do Jacu", tipo: "horta", lat: -25.4079, lng: -49.2708, endereco: "Rua Ângelo Zeni – Bom Retiro" }
   ];
 
-  /* ================= CARDS ================= */
-  const cards = document.getElementById("cards");
+ const cards = document.getElementById("cards");
+  const naoEncontrou = document.getElementById("naoEncontrou");
+  const markers = [];
 
-  locais.forEach((local, index) => {
-    L.marker([local.lat, local.lng]).addTo(map);
+  function render(lista) {
+    cards.innerHTML = "";
+    naoEncontrou.style.display = lista.length ? "none" : "block";
 
-    const card = document.createElement("div");
-    card.className = "card";
+    markers.forEach(m => map.removeLayer(m));
 
-    card.innerHTML = `
-      <h3>${local.nome}</h3>
-      <p>${local.endereco}</p>
-      ${local.tipo === "fazenda"
-        ? `<button onclick="abrirModal(${index})">Conhecer a Fazenda</button>`
-        : ""
-      }
-      <button onclick="verNoMapa(${local.lat}, ${local.lng})">Ver no mapa</button>
+    lista.forEach((l,i) => {
+      const m = L.marker([l.lat, l.lng]).addTo(map).bindPopup(l.nome);
+      markers.push(m);
+
+      const c = document.createElement("div");
+      c.className = "card";
+      c.innerHTML = `
+        ${l.imagem ? `<img src="${l.imagem}">` : ""}
+        <h3>${l.nome}</h3>
+        <p>${l.bairro}</p>
+        ${l.tipo==="fazenda" ? `<button onclick="abrirModal(${i})">Conhecer a Fazenda</button>`:""}
+        <button onclick="verNoMapa(${l.lat},${l.lng},${i})">Ver no mapa</button>
+      `;
+      cards.appendChild(c);
+    });
+  }
+
+  render(locais);
+
+  window.verNoMapa = (lat,lng,i) => {
+    map.setView([lat,lng],16);
+    markers[i].openPopup();
+    document.getElementById("map").scrollIntoView({behavior:"smooth"});
+  };
+
+  window.buscarEndereco = () => {
+    const v = document.getElementById("endereco").value.toLowerCase();
+    const filtrado = locais.filter(l => l.bairro.toLowerCase().includes(v));
+    render(filtrado);
+  };
+
+  window.abrirModal = i => {
+    document.getElementById("modalTitulo").innerText = locais[i].nome;
+    document.getElementById("modalDescricao").innerHTML = `
+      ${locais[i].descricao}<hr>
+      Visitas: seg-sex 8h–12h / 13h–17h<br>
+      Cursos gratuitos (SMSAN)
     `;
-
-    cards.appendChild(card);
-  });
-
-  window.verNoMapa = (lat, lng) => {
-    map.setView([lat, lng], 16);
-    document.getElementById("map").scrollIntoView({ behavior: "smooth" });
+    document.getElementById("modalFazenda").style.display="flex";
   };
 
-  window.abrirModal = (index) => {
-    document.getElementById("modalTitulo").innerText = locais[index].nome;
-    document.getElementById("modalDescricao").innerHTML = locais[index].descricao;
-    document.getElementById("modalFazenda").style.display = "flex";
-  };
-
-  window.fecharModal = () => {
-    document.getElementById("modalFazenda").style.display = "none";
-  };
+  window.fecharModal = () =>
+    document.getElementById("modalFazenda").style.display="none";
 
 });
