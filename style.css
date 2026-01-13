@@ -10,19 +10,10 @@ body {
   color: #2e2e2e;
 }
 
-header {
+.topo {
   background: linear-gradient(90deg, #d9f5e5, #e7f7ff);
-  padding: 32px 20px;
+  padding: 30px 20px;
   text-align: center;
-}
-
-header h1 {
-  font-size: 2rem;
-}
-
-header p {
-  margin-top: 8px;
-  font-size: 1rem;
 }
 
 .curiosidades {
@@ -31,22 +22,13 @@ header p {
   background: #fff7cc;
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-.curiosidades h2 {
-  margin-bottom: 12px;
-  color: #2f6b2f;
 }
 
 .curiosidades ul {
   list-style: none;
 }
 
-.curiosidades li {
-  margin-bottom: 8px;
-}
-
+/* BUSCA */
 .busca {
   display: flex;
   justify-content: center;
@@ -59,11 +41,10 @@ header p {
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  min-width: 240px;
 }
 
 .busca button {
-  padding: 10px 18px;
+  padding: 10px 16px;
   border-radius: 8px;
   border: none;
   background: #66bb6a;
@@ -72,17 +53,15 @@ header p {
 }
 
 #map {
-  width: 100%;
   height: 420px;
-  margin: 30px auto;
-  border-radius: 16px;
-  position: relative;
-  z-index: 1; /* IMPORTANTE */
+  margin: 20px;
+  border-radius: 14px;
+  z-index: 1;
 }
 
 #cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
   padding: 20px;
 }
@@ -90,39 +69,19 @@ header p {
 .card {
   background: #ffffff;
   border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.15);
-}
-
-.card.fazenda {
-  border-left: 6px solid #2e7d32;
-  background: #f0fff4;
-}
-
-.card h3 {
-  margin-bottom: 8px;
-}
-
-.card p {
-  margin-bottom: 12px;
-  font-size: 0.95rem;
+  padding: 18px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.1);
 }
 
 .card button {
   width: 100%;
+  margin-top: 10px;
   padding: 10px;
-  border-radius: 10px;
-  border: none;
   background: #2e7d32;
   color: #fff;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  margin-top: 8px;
 }
 
 .cta-container {
@@ -132,47 +91,31 @@ header p {
 }
 
 .cta-box {
-  background: linear-gradient(135deg, #e8f8ec, #ffffff);
-  border-radius: 20px;
-  padding: 36px 28px;
   max-width: 700px;
-  width: 100%;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
   text-align: center;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-}
-
-.cta-box h3 {
-  font-size: 1.6rem;
-  margin-bottom: 12px;
-}
-
-.cta-box p {
-  margin-bottom: 20px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.1);
 }
 
 .cta-button {
   display: inline-block;
-  padding: 14px 26px;
-  background: linear-gradient(135deg, #4CAF50, #2e7d32);
+  margin-top: 20px;
+  background: #4CAF50;
   color: #fff;
-  border-radius: 30px;
+  padding: 12px 24px;
+  border-radius: 24px;
   text-decoration: none;
-  font-weight: bold;
 }
 
-.nao-encontrou {
-  display: none;
-  justify-content: center;
-  margin: 40px 20px;
-}
-
-.nao-encontrou div {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 30px;
+.info-box {
   max-width: 700px;
-  text-align: center;
-  box-shadow: 0 10px 26px rgba(0,0,0,0.15);
+  margin: 30px auto;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 .modal {
@@ -180,39 +123,25 @@ header p {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.6);
-  z-index: 9999; /* ACIMA DO MAPA */
-  align-items: center;
-  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
 }
 
 .modal-content {
-  background: #ffffff;
-  width: 90%;
-  max-width: 700px;
-  padding: 28px;
-  border-radius: 18px;
+  background: #fff;
+  max-width: 600px;
+  margin: auto;
+  padding: 24px;
+  border-radius: 16px;
   position: relative;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-}
-
-.modal-content h2 {
-  color: #2e7d32;
-  margin-bottom: 16px;
-}
-
-.modal-content p {
-  margin-bottom: 12px;
-  line-height: 1.5;
 }
 
 .close {
   position: absolute;
-  top: 14px;
-  right: 18px;
-  font-size: 26px;
+  top: 12px;
+  right: 16px;
   cursor: pointer;
+  font-size: 22px;
 }
 
 .modal-btn {
@@ -222,77 +151,4 @@ header p {
   color: #fff;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
-}
-
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 1.6rem;
-  }
-}
-  #map {
-    height: 300px;
-  }
-
-#map,
-.leaflet-container,
-.leaflet-pane {
-  z-index: 1 !important;
-}
-
-.modal {
-  z-index: 10000 !important;
-}
-
-body.modal-aberto #map,
-body.modal-aberto .leaflet-container {
-  pointer-events: none;
-}
-
-.rodape-infos {
-  display: flex;
-  flex-direction: column;   /* FORÇA UM EMBAIXO DO OUTRO */
-  gap: 24px;
-  max-width: 900px;
-  margin: 40px auto 60px;
-  padding: 0 16px;
-}
-
-.info-box,
-.nao-encontrou {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-}
-
-.info-box h3,
-.nao-encontrou h3 {
-  color: #2e7d32;
-  margin-bottom: 12px;
-}
-
-.info-box p,
-.nao-encontrou p {
-  line-height: 1.6;
-  font-size: 1rem;
-}
-
-.info-box a,
-.nao-encontrou a {
-  color: #2e7d32;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.info-box a:hover,
-.nao-encontrou a:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  .rodape-infos {
-    margin-top: 30px;
-    gap: 20px;
-  }
 }
