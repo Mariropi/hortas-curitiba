@@ -19,18 +19,18 @@
     <li><strong>1,6 mil toneladas</strong> de frutas e verduras por ano</li>
     <li><strong>32 mil pessoas</strong> beneficiadas diretamente</li>
     <li><strong>130 colmeias</strong> de abelhas sem ferrão</li>
-    <li><strong>3 Fazendas Urbanas Municipais</strong></li>
+    <li><strong>3 Fazendas Urbanas Municipais</strong> em funcionamento</li>
   </ul>
 </section>
 
-<header class="topo">
+<header>
   <h1>🌱 Hortas Urbanas de Curitiba</h1>
   <p>Mapa interativo das hortas e fazendas urbanas</p>
 </header>
 
 <section class="busca">
   <input type="text" id="endereco" placeholder="Digite seu endereço ou bairro">
-  <button onclick="buscarEndereco()">Buscar</button>
+  <button onclick="buscarEndereco()">Buscar horta mais próxima</button>
 </section>
 
 <div id="map"></div>
@@ -40,8 +40,16 @@
 <div id="naoEncontrou" class="nao-encontrou">
   <h3>❓ Não encontrou uma horta?</h3>
   <p>
-    Para saber a localização exata das hortas mais próximas ao seu bairro,
-    procure a <strong>Central 156</strong> (telefone ou chat online).
+    Para obter a localização exata das hortas mais próximas ao seu endereço ou bairro,
+    e saber quais são geridas por associações de moradores, o canal mais eficiente é a
+    <strong>Central 156</strong>.
+  </p>
+  <p>
+    📞 Telefone / Chat online / WhatsApp  
+    <br>
+    👉 <a href="https://www.curitiba.pr.gov.br/servicos/central-156/5" target="_blank">
+      Acessar Central 156
+    </a>
   </p>
 </div>
 
@@ -50,15 +58,19 @@
     <h3>🌱 Quer criar uma horta comunitária?</h3>
     <p>
       A Prefeitura oferece apoio por meio das Fazendas Urbanas,
-      com cursos e orientação para mais de 200 hortas.
+      com cursos e orientação para mais de 200 hortas em funcionamento.
     </p>
-    <a href="https://www.curitiba.pr.gov.br/servicos/hortas-comunitarias-urbanas-curitiba/107"
-       target="_blank" class="cta-button">
+    <a
+      href="https://www.curitiba.pr.gov.br/servicos/hortas-comunitarias-urbanas-curitiba/107"
+      target="_blank"
+      class="cta-button"
+    >
       Clique aqui e saiba mais
     </a>
   </div>
 </div>
 
+<!-- MODAL FAZENDA -->
 <div id="modalFazenda" class="modal">
   <div class="modal-content">
     <span class="close" onclick="fecharModal()">×</span>
@@ -70,5 +82,7 @@
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="script.js"></script>
+
 </body>
 </html>
+
