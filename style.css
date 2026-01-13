@@ -1,42 +1,12 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 body {
   font-family: 'ADLaM Display', Arial, sans-serif;
   background: #f1fff4;
-  color: #2e2e2e;
 }
 
-header {
+.topo {
   background: linear-gradient(90deg, #d9f5e5, #e7f7ff);
-  padding: 30px 20px;
   text-align: center;
-}
-
-.curiosidades {
-  max-width: 1100px;
-  margin: 30px auto;
-  background: #fff7cc;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-}
-
-.curiosidades h2 {
-  margin-bottom: 12px;
-  color: #2f6b2f;
-}
-
-.curiosidades ul {
-  list-style: none;
-}
-
-.curiosidades li {
-  margin-bottom: 8px;
-  font-size: 1.05rem;
+  padding: 30px;
 }
 
 .busca {
@@ -46,25 +16,9 @@ header {
   padding: 20px;
 }
 
-.busca input {
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-.busca button {
-  padding: 10px 16px;
-  border-radius: 8px;
-  border: none;
-  background: #66bb6a;
-  color: #fff;
-  cursor: pointer;
-}
-
 #map {
-  width: 100%;
   height: 420px;
-  margin: 20px auto;
+  margin: 20px;
   border-radius: 16px;
 }
 
@@ -72,37 +26,21 @@ header {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
-  padding: 30px;
+  padding: 20px;
 }
 
 .card {
-  background: #ffffff;
+  background: #fff;
+  padding: 16px;
   border-radius: 16px;
-  padding: 18px;
-  box-shadow: 0 8px 20px rgba(0,0,0,.08);
-  transition: transform .2s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.1);
 }
 
 .card img {
   width: 100%;
-  height: 160px;
+  height: 150px;
   object-fit: cover;
   border-radius: 12px;
-  margin-bottom: 12px;
-}
-
-.img-placeholder {
-  height: 160px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
 }
 
 .card button {
@@ -113,120 +51,30 @@ header {
   border: none;
   background: #2e7d32;
   color: #fff;
-  cursor: pointer;
 }
 
-.cta-container {
-  display: flex;
-  justify-content: center;
-  margin: 50px 20px;
-}
-
-.cta-box {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 35px;
+.nao-encontrou {
+  display: none;
+  background: #fff;
   max-width: 700px;
+  margin: 40px auto;
+  padding: 24px;
+  border-radius: 16px;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-.cta-button {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 14px 28px;
-  background: #43a047;
-  color: #fff;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
 }
 
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
-  z-index: 9999;
-  display: flex;
+  background: rgba(0,0,0,.6);
   justify-content: center;
   align-items: center;
 }
 
 .modal-content {
-  background: #ffffff;
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
   max-width: 600px;
-  width: 90%;
-  padding: 28px;
-  border-radius: 18px;
-  position: relative;
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-.modal-content h2 {
-  color: #2e7d32;
-  margin-bottom: 16px;
-}
-
-.modal-content img {
-  width: 100%;
-  border-radius: 12px;
-  margin-bottom: 16px;
-}
-
-.close {
-  position: absolute;
-  top: 14px;
-  right: 18px;
-  font-size: 26px;
-  cursor: pointer;
-}
-
-.modal-btn {
-  margin-top: 20px;
-  background: #2e7d32;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-}
-
-.nao-encontrou {
-  display: none;
-  justify-content: center;
-  margin: 40px 20px;
-}
-
-.nao-encontrou div {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 30px;
-  max-width: 700px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  text-align: center;
-}
-.info-fixa {
-  max-width: 900px;
-  margin: 40px auto;
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  text-align: center;
-}
-
-.info-fixa h3 {
-  color: #2e7d32;
-  margin-bottom: 12px;
-}
-
-.info-fixa a {
-  color: #2e7d32;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.info-fixa a:hover {
-  text-decoration: underline;
 }
