@@ -249,3 +249,23 @@ body.modal-aberto #map,
 body.modal-aberto .leaflet-container {
   pointer-events: none;
 }
+
+.rodape-infos {
+  display: flex;
+  flex-direction: column;  
+  gap: 24px;
+  max-width: 900px;
+  margin: 40px auto 60px;
+  padding: 0 16px;
+}
+
+.rodape-infos .info-box,
+.rodape-infos .nao-encontrou {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .rodape-infos {
+    gap: 20px;
+  }
+}
