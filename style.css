@@ -141,3 +141,12 @@ header {
   padding: 10px 16px;
   border-radius: 8px;
 }
+
+.info-fixa {
+  max-width: 700px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 16px;
+  text-align: center;
+}
