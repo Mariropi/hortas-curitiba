@@ -150,3 +150,49 @@ header {
   border-radius: 16px;
   text-align: center;
 }
+.overlay-nao-encontrou {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.overlay-card {
+  background: #fff;
+  max-width: 520px;
+  width: 100%;
+  padding: 28px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+.overlay-card h3 {
+  color: #2e7d32;
+  margin-bottom: 16px;
+}
+
+.overlay-card p {
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.overlay-card a {
+  color: #2e7d32;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.overlay-card button {
+  margin-top: 16px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background: #2e7d32;
+  color: #fff;
+  cursor: pointer;
+}
