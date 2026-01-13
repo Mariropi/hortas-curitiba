@@ -32,78 +32,59 @@ document.addEventListener("DOMContentLoaded", function () {
         ✉️ <a href="mailto:fazendaurbana@curitiba.pr.gov.br">fazendaurbana@curitiba.pr.gov.br</a>
       `
     },
-
     {
       nome: "Fazenda Urbana CIC",
       tipo: "fazenda",
-      lat: -25.4900288,
-      lng: -49.3539665,
+      lat: -25.4900,
+      lng: -49.3539,
       endereco: "Rua Maria Lúcia Locher Athayde, 7974 – São Miguel",
-      descricao: "Fazenda Urbana CIC – integração com o ecossistema alimentar metropolitano."
+      descricao: "Centro de capacitação e integração ao ecossistema alimentar da região metropolitana."
     },
-
     {
       nome: "Fazenda Urbana Tatuquara",
       tipo: "fazenda",
       lat: -25.5877,
       lng: -49.3482,
       endereco: "Rua Olivardo Konoroski Bueno, 177 – Tatuquara",
-      descricao: "Praça viva de convivência, produção de alimentos e geração de renda."
+      descricao: "Praça viva de convivência, produção de alimentos e geração de renda local."
     },
 
-    {
-      nome: "Horta Projeto Oásis",
-      tipo: "horta",
-      lat: -25.5203,
-      lng: -49.2569,
-      endereco: "Rua Padre Stanislau Trzebialowski, 252 – Alto Boqueirão"
-    },
-    {
-      nome: "Horta Comunitária Cristo Rei",
-      tipo: "horta",
-      lat: -25.4359,
-      lng: -49.2413,
-      endereco: "R. Roberto Cichon, 183 – Cristo Rei"
-    },
-    {
-      nome: "Horta Maria Angélica",
-      tipo: "horta",
-      lat: -25.5385,
-      lng: -49.2958,
-      endereco: "Rua Monte das Oliveiras, 260 – Pinheirinho"
-    },
-    {
-      nome: "Horta Comunitária Amigos da Fazendinha",
-      tipo: "horta",
-      lat: -25.4914,
-      lng: -49.3283,
-      endereco: "R. Afrânio Peixoto, 330 – Fazendinha"
-    },
-    {
-      nome: "Horta Comunitária Dembinski II",
-      tipo: "horta",
-      lat: -25.5006,
-      lng: -49.3554,
-      endereco: "R. Rio do Sul – CIC"
-    },
-    {
-      nome: "Horta Comunitária do Jacu",
-      tipo: "horta",
-      lat: -25.4079,
-      lng: -49.2708,
-      endereco: "Rua Ângelo Zeni – Bom Retiro"
-    }
+    { nome: "Horta Projeto Oásis", tipo: "horta", lat: -25.5203, lng: -49.2569, endereco: "Rua Padre Stanislau Trzebialowski, 252 – Alto Boqueirão" },
+    { nome: "Horta Comunitária Cristo Rei", tipo: "horta", lat: -25.4359, lng: -49.2413, endereco: "R. Roberto Cichon, 183 – Cristo Rei" },
+    { nome: "Horta Maria Angélica", tipo: "horta", lat: -25.5385, lng: -49.2958, endereco: "Rua Monte das Oliveiras, 260 – Pinheirinho" },
+    { nome: "Horta Comunitária Amigos da Fazendinha", tipo: "horta", lat: -25.4914, lng: -49.3283, endereco: "R. Afrânio Peixoto, 330 – Fazendinha" },
+    { nome: "Horta Comunitária Dembinski II", tipo: "horta", lat: -25.5006, lng: -49.3554, endereco: "R. Rio do Sul – CIC" },
+    { nome: "Horta Comunitária do Jacu", tipo: "horta", lat: -25.4079, lng: -49.2708, endereco: "Rua Ângelo Zeni – Bom Retiro" }
   ];
 
+  const cards = document.getElementById("cards");
   const markers = [];
 
-  locais.forEach(local => {
+  locais.forEach((local, index) => {
     const marker = L.marker([local.lat, local.lng])
       .addTo(map)
       .bindPopup(`<strong>${local.nome}</strong><br>${local.endereco}`);
+
     markers.push({ marker, local });
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <h3>${local.nome}</h3>
+      <p>${local.endereco}</p>
+      ${local.tipo === "fazenda" ? `<button onclick="abrirModal(${index})">Conhecer a Fazenda</button>` : ""}
+      <button onclick="verNoMapa(${local.lat}, ${local.lng})">Ver no mapa</button>
+    `;
+
+    cards.appendChild(card);
   });
 
+  window.verNoMapa = function (lat, lng) {
+    map.setView([lat, lng], 16);
+    document.getElementById("map").scrollIntoView({ behavior: "smooth" });
+  };
+  
   window.buscarEndereco = function () {
     const endereco = document.getElementById("endereco").value;
     const naoEncontrou = document.getElementById("naoEncontrou");
@@ -130,33 +111,25 @@ document.addEventListener("DOMContentLoaded", function () {
         let menorDistancia = Infinity;
 
         locais.forEach(local => {
-          const distancia = Math.sqrt(
+          const d = Math.sqrt(
             Math.pow(local.lat - latUser, 2) +
             Math.pow(local.lng - lngUser, 2)
           );
 
-          if (distancia < menorDistancia) {
-            menorDistancia = distancia;
+          if (d < menorDistancia) {
+            menorDistancia = d;
             maisProximo = local;
           }
         });
 
-        // Aproximadamente 10km
+        // ~10km
         if (menorDistancia > 0.09) {
           naoEncontrou.style.display = "block";
           return;
         }
 
         map.setView([maisProximo.lat, maisProximo.lng], 16);
-
-        markers.forEach(obj => {
-          if (obj.local.nome === maisProximo.nome) {
-            obj.marker.openPopup();
-          }
-        });
-      })
-      .catch(() => {
-        naoEncontrou.style.display = "block";
+        markers.find(m => m.local.nome === maisProximo.nome).marker.openPopup();
       });
   };
 
